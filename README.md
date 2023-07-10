@@ -1,4 +1,4 @@
-# The Fastify Workshop
+# The Micro Frontends Workshop
 
 ![ci](https://github.com/nearform/the-fastify-workshop/workflows/ci/badge.svg)
 
