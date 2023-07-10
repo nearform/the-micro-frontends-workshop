@@ -1,0 +1,35 @@
+{
+  "name": "the-micro-frontend-workshop",
+  "private": true,
+  "workspaces": [
+    "src/*"
+  ],
+  "version": "1.0.0",
+  "license": "",
+  "author": "Mateja Ristic <mateja.ristic@nearform.com> and Ruslan Bredikhin (ruslan.bredikhin@nearform.com)",
+  "scripts": {
+    "build": "slidev build",
+    "start": "slidev --open",
+    "export": "slidev export",
+    "lint": "eslint --ext .ts,.js ./src"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.42.5",
+    "slidev-theme-nearform": "^1.5.5"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^16.1.0",
+    "@types/http-errors": "^2.0.1",
+    "@types/node": "^20.4.1",
+    "@types/sinon": "^10.0.15",
+    "@types/tap": "^15.0.8",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.44.0",
+    "prettier": "^3.0.0",
+    "sinon": "^15.2.0",
+    "tap": "^16.3.7",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.1.6"
+  }
+}
