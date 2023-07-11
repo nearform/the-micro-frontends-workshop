@@ -50,3 +50,7 @@ ol {
 #slide-shapes-transitions-image img {
   height: 25rem;
 }
+
+.bigger {
+  font-size: 1.8rem;
+}
