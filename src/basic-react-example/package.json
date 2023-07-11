@@ -1,0 +1,6 @@
+{
+    "scripts": {
+      "start": "(cd app1 && webpack-cli serve) & (cd app2 && webpack-cli serve)"
+    }
+  }
+  
