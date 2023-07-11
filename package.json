@@ -5,7 +5,9 @@
     "src/setting-up-host/host",
     "src/setting-up-host/remote",
     "src/setting-up-remote/host",
-    "src/setting-up-remote/remote"
+    "src/setting-up-remote/remote",
+    "src/bi-directional/app1",
+    "src/bi-directional/app2"
   ],
   "version": "1.0.0",
   "license": "",
