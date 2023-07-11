@@ -1,6 +1,5 @@
 {
-    "scripts": {
-      "start": "(cd host && webpack-cli serve) & (cd remote && webpack-cli serve)"
-    }
+  "scripts": {
+    "start": "concurrently \"cd host; webpack-cli serve\" \"cd remote; webpack-cli serve\""
   }
-  
+}

@@ -3,7 +3,9 @@
   "private": true,
   "workspaces": [
     "src/setting-up-host/host",
-    "src/setting-up-host/remote"
+    "src/setting-up-host/remote",
+    "src/setting-up-remote/host",
+    "src/setting-up-remote/remote"
   ],
   "version": "1.0.0",
   "license": "",
@@ -26,6 +28,7 @@
     "@types/tap": "^15.0.8",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
+    "concurrently": "8.2.0",
     "eslint": "^8.44.0",
     "prettier": "^3.0.0",
     "sinon": "^15.2.0",
