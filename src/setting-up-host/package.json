@@ -1,0 +1,6 @@
+{
+    "scripts": {
+      "start": "(cd host && webpack-cli serve) & (cd remote && webpack-cli serve)"
+    }
+  }
+  

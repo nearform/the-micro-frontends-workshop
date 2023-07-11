@@ -28,8 +28,8 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'app2',
-      library: { type: 'var', name: 'app2' },
+      name: 'remote',
+      library: { type: 'var', name: 'remote' },
       filename: 'remoteEntry.js',
       exposes: {
         './Button': './src/Button',

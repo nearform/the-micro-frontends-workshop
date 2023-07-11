@@ -2,8 +2,8 @@
   "name": "the-micro-frontend-workshop",
   "private": true,
   "workspaces": [
-    "src/basic-react-example/app1",
-    "src/basic-react-example/app2"
+    "src/setting-up-host/host",
+    "src/setting-up-host/remote"
   ],
   "version": "1.0.0",
   "license": "",
