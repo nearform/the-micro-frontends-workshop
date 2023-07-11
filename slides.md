@@ -83,6 +83,21 @@ One of the easiest ways to compose micro frontends is by using a dedicated frame
 
 ---
 
+# Module federation with Webpack
+
+<div>
+<p>As we mentioned earlier, initially module federation was implemented as a plugin introduced in Webpack 5.
+To set up Module Federation in Webpack, you need to define the federated modules in your Webpack configuration files, specify the remote entry points and  expose specific modules (aka “remotes”) that you want to share with other applications. The remote entry points represent the Webpack builds that expose  modules for consumption.</p>
+
+<p>In the consuming application's (aka “host”) Webpack configuration, you define which federated modules you want to consume. You specify the remote entry points and the modules you want to import from those remotes.
+When you build and run your applications, Webpack dynamically loads the federated modules at runtime. It fetches the remote entry points, resolves the requested modules, and injects them into the consuming application. This process allows you to share code between applications without physically bundling everything together.</p>
+
+<p>Note that as an application has multiple dependencies, a host can also have multiple remotes.</p>
+
+</div>
+
+---
+
 # Thanks For Having Us!
 
 ## 👏👏👏
