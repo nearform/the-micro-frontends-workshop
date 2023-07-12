@@ -98,6 +98,38 @@ When you build and run your applications, Webpack dynamically loads the federate
 
 ---
 
+# Federated Types
+
+<div class="dense">
+<p>
+When it comes to TypeScript applications, the most common problem with using external libraries (which can be federated remote modules) is that not all of them provide TypeScript types with the original code. In the context of module federation, this problem is aggravated by the fact that Webpack only loads resources from the federated module at runtime, TypeScript, however, needs those during compilation. Long story short, there’s no obvious way to publish and fetch the compile-time types.</p>
+<p>If you are facing this problem, you have following options:</p>
+
+-   referencing types across monorepo (if possible)
+-   packaging your types for distribution via a package registry (e.g. npm)
+-   @module-federation/typescript
+
+<p>
+Something to keep in mind is that the host is becoming dependent on the remote types which means that each time remote changes its types, it can potentially break the host.
+</p>
+
+</div>
+
+---
+
+# References
+
+<div class="dense">
+
+-   https://martinfowler.com/articles/micro-frontends.html
+-   https://www.nearform.com/blog/react-micro-frontends-module-federation/
+-   https://github.com/module-federation/universe/tree/main/packages/native-federation-tests by NearForm
+-   https://github.com/module-federation/universe/tree/main/packages/native-federation-typescript by NearForm
+
+</div>
+
+---
+
 # Thanks For Having Us!
 
 ## 👏👏👏
