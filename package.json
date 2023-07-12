@@ -2,7 +2,7 @@
   "name": "the-micro-frontend-workshop",
   "private": true,
   "workspaces": [
-    "src/*"
+    "src/setting-up-remote"
   ],
   "version": "1.0.0",
   "license": "",
@@ -25,10 +25,10 @@
     "@types/tap": "^15.0.8",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
+    "concurrently": "8.2.0",
     "eslint": "^8.44.0",
     "prettier": "^3.0.0",
     "sinon": "^15.2.0",
-    "tap": "^16.3.7",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.1.6"
   }
