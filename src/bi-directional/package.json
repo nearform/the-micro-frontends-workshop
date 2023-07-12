@@ -1,5 +1,0 @@
-{
-  "scripts": {
-    "start": "concurrently \"cd app1; webpack-cli serve\" \"cd app2; node_modules/.bin/webpack-cli serve\""
-  }
-}

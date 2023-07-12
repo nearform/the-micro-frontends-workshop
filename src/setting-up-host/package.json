@@ -1,5 +1,0 @@
-{
-  "scripts": {
-    "start": "concurrently \"cd host; webpack-cli serve\" \"cd remote; webpack-cli serve\""
-  }
-}
