@@ -41,7 +41,7 @@ Module federation is one of the most popular approaches for implementing micro f
 
 <div class="bigger">
 
-Pretty self-explanatory, this approach is about rendering various micro frontends in separate iframes and composing those via a container application. The most obvious benefit of this approach is complete decoupling of the application components. However, this approach also has some substantial cons like composition complexity and high potential for performance issues.
+This approach is about rendering various micro frontends in separate iframes and composing those via a container application. The most obvious benefit of this approach is complete decoupling of the application components. However, this approach also has some substantial cons like composition complexity and high potential for performance issues.
 
 </div>
 
@@ -65,8 +65,9 @@ Edge-side composition assumes that micro frontends are assembled by the edge usi
 One of the easiest ways to compose micro frontends is by using a dedicated framework. Those frameworks can provide composition either on the client or the server side. Some of the most prominent examples include:
 </p>
 
--   client-side: SingleSPA, Qiankun (based on SingleSPA), Luigi
--   server-side: Ara, Bit, Open Components, Piral
+-- client-side: SingleSPA, Qiankun (based on SingleSPA), Luigi
+
+-- server-side: Ara, Bit, Open Components, Piral
 
 </div>
 
@@ -76,9 +77,11 @@ One of the easiest ways to compose micro frontends is by using a dedicated frame
 
 <div class="dense">
 
--   a <em>host</em> is an application that includes the initial chunks of our code, the ones that will be used to bootstrap our container – as part of module federation, those are just referenced to a remote, which allows for smaller bundle sizes and shorter initial load times;
--   a <em>remote</em> is an module that is being consumed by the host, and it can be both shared components or common dependencies to be used by different hosts;
--   a <em>bidirectional host</em> can be either a host or a remote (or both), consuming other applications or providing some code to other hosts.
+-- a **host** is an application that includes the initial chunks of our code, the ones that will be used to bootstrap our container – as part of module federation, those are just referenced to a remote, which allows for smaller bundle sizes and shorter initial load times;
+
+-- a **remote** is an module that is being consumed by the host, and it can be both shared components or common dependencies to be used by different hosts;
+
+-- a **bidirectional host** can be either a host or a remote (or both), consuming other applications or providing some code to other hosts.
 </div>
 
 ---
@@ -104,8 +107,9 @@ When you build and run your applications, Webpack dynamically loads the federate
 
 #### Requirements
 
--   Node LTS
--   npm >= 7
+-- Node LTS
+
+-- npm >= 7
 
 #### Setup
 
@@ -122,12 +126,13 @@ npm i
 
 <div class="dense">
 
--   This workshop is made of multiple, incremental modules (aka exercises)
--   Each module builds on top of the previous one
--   At each step you are asked to add features and solve problems
--   You will find the solution to each step in the `src/step-{n}-{name}` folder
--   The 🏆 icon indicates bonus features
--   The 💡 icon indicates hints
+-- This workshop is made of multiple, incremental modules (aka exercises)
+
+-- Each module builds on top of the previous one
+
+-- At each step you are asked to add features and solve problems
+
+-- You will find the solution to each step in the `src/step-{n}-{name}` folder
 
 </div>
 
@@ -135,9 +140,9 @@ npm i
 
 # Running the modules
 
--   `cd src/step-{n}-{name}`
+-- `cd src/step-{n}-{name}`
 
--   Check out README.md
+-- Check out README.md
 
 #### Example
 
@@ -153,8 +158,9 @@ npm run start
 
 <div  class="dense">
 
--   There are a few key steps that need to be made in order to expose a module for remote consumption (federation).
--   In this example we are going to demonstrate these steps in a basic React app since any webpack based application that supports MF will have the similar flow for enabling this feature.
+-- There are a few key steps that need to be made in order to expose a module for remote consumption (federation).
+
+-- In this example we are going to demonstrate these steps in a basic React app since any webpack based application that supports MF will have the similar flow for enabling this feature.
 
 </div>
 
@@ -166,13 +172,13 @@ npm run start
 
 ## Configuring `webpack.config.js` file
 
-In order to enable Module Federation we need to import `ModuleFederationPlugin` from webpack on top of this file.
+In order to enable module federation we need to import `ModuleFederationPlugin` from webpack on top of this file.
 
 ```js
 const { ModuleFederationPlugin } = require('webpack').container
 ```
 
-This plugin needs to be instantiated and configured inside the plugins section of the config file. The most basic configuration requires `name`, `fileName` and `exposes` key values.
+This plugin needs to be instantiated and configured inside the plugins section of the configuration file. The most basic configuration requires `name`, `fileName` and `exposes` key values.
 
 ```js
 // ....
@@ -193,9 +199,11 @@ plugins: [
 
 <div  class="dense">
 
--   `name` is where we define a name to distinguish modules. This value will be used by a consumer application when defining remotes inside of it.
--   `filename` can be any value and it will be an entry point for exposed/shared modules. `remoteEntry.js` is most commonly/conventionally used for this purpose.
--   In `exposes` object we define components for remote consumption. Key name should always be in form of `./ComponentName` and the value should be its relative path to webpack config file.
+-- `name` is where we define a name to distinguish modules. This value will be used by a consumer application when defining remotes inside of it
+
+-- `filename` can be any value and it will be an entry point for exposed/shared modules. `remoteEntry.js` is most commonly/conventionally used for this purpose
+
+-- in `exposes` object we define components for remote consumption. Key name should always be in form of `./ComponentName` and the value should be its relative path to webpack config file
 
 </div>
 
@@ -234,11 +242,13 @@ Shared module is not available for eager consumption
 
 <div  class="dense">
 
--   In `src` folder of the provided basic React application:
+In `src` folder of the provided basic React application:
 
-    -   Create a `Button.js` file with `<Button />` element that returns a basic HTML `button` with `Remote Button` text.
-    -   Render that element inside `App.js`.
-    -   Render the entire application via `ReactDOM.render()` method inside of `bootstrap.js ` file and import that file in `index.js` file using the `import` statement.
+-- Create a `Button.js` file with `<Button />` element that returns a basic HTML `button` with `Remote Button` text.
+
+--  Render that element inside `App.js`.
+
+-- Render the entire application via `ReactDOM.render()` method inside of `bootstrap.js ` file and import that file in `index.js` file using the `import` statement.
 
 </div>
 
@@ -248,11 +258,13 @@ Shared module is not available for eager consumption
 
 <div  class="dense">
 
--   In `webpack.config.js` file:
+In `webpack.config.js` file:
 
-    -   Import `ModuleFederationPlugin` plugin from webpack's `container` object.
-    -   In exported modules instantiate `new ModuleFederationPlugin`.
-    -   Pass a configuration object and define values for `name`, `filename` and `exposes` keys. Remember that `filename` uses a naming convention and `exposes` refers to the element that we want to expose.
+-- import `ModuleFederationPlugin` plugin from webpack's `container` object
+
+-- in exported modules instantiate `new ModuleFederationPlugin`.
+
+-- pass a configuration object and define values for `name`, `filename` and `exposes` keys. Remember that `filename` uses a naming convention and `exposes` refers to the element that we want to expose.
 
 </div>
 
@@ -331,7 +343,7 @@ module.exports = {
 
 # Step 1: Trying it Out
 
-#### From your browser visit :
+## From your browser visit :
 
 <div class="dense">
 
@@ -361,13 +373,11 @@ For the second one you should see a `script` that exposes our button element for
 
 Create a Next.js app that:
 
--   displays a simple layout (e.g. a distinctive background)
--   is configured as a host
--   consumes a remote from step 1
+-- displays a simple layout (e.g. a distinctive background)
 
-> 💡 use https://nextjs.org/docs/pages/api-reference/create-next-app
+-- is configured as a host
 
-> 🏆 add a header and a footer
+-- consumes a remote from step 1
 
 </div>
 
@@ -429,6 +439,68 @@ export default function Home() {
 
 ---
 
+# Shared dependencies
+
+<div class="dense">
+
+-- **Shared dependencies** refer to the libraries, frameworks, or modules that are required by multiple federated modules to function properly. By sharing these dependencies, modules can avoid duplication and ensure consistency and compatibility.
+
+-- Shared dependencies typically include runtime libraries, such as **React** or **Angular**, along with any additional utility libraries or common components that are needed by the federated modules. They are typically declared and managed in a shared configuration file, allowing modules to access and utilize them seamlessly.
+
+</div>
+
+Please follow the guidelines from Zack Jackson (inventor & co-creator of module federation):
+
+-- Sharing should be done with care - since shared modules cannot be tree-shaken
+
+-- If you need a singleton (like things that depend on React context), then it must be shared
+
+-- Sharing all dependencies can lead to larger bundles so its best to consider case by case
+
+---
+
+# Shared dependencies: Shared API
+
+-- **shared (object | [string])**: an object or an array containing a list of dependency names that can be shared across the federated modules
+
+-- **eager (boolean)**: specifies whether the dependency will be eagerly loaded and provided to other federated modules as soon as the host app starts (otherwise will be loaded lazily when first requested by the federated app)
+
+-- **singleton (boolean)**: whether the dependency will be considered a singleton, which means that only a single instance of it is supposed to be shared across all the federated modules
+
+-- **requiredVersion (string)**: specifies the required version of the dependency, which makes any incompatible version loaded separately (not shared); note that if the `singleton` property setting `requiredVersion` will raise a warning in case of a conflict
+
+---
+
+# Shared dependencies: Example
+
+```javascript
+// webpack.config.js
+
+const path = require('path');
+const { ModuleFederationPlugin } = require('webpack').container;
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  plugins: [
+    new ModuleFederationPlugin({
+      name: 'MyApp',
+      filename: 'remoteEntry.js',
+      exposes: { './Button': './src/components/Button' },
+      shared: {
+        react: { singleton: true, requiredVersion: '18.2.0' },
+        'react-dom': { singleton: true, requiredVersion: '18.2.0' },
+      },
+    }),
+  ],
+};
+```
+
+---
+
 # Federated Types
 
 <div class="dense">
@@ -436,9 +508,11 @@ export default function Home() {
 When it comes to TypeScript applications, the most common problem with using external libraries (which can be federated remote modules) is that not all of them provide TypeScript types with the original code. In the context of module federation, this problem is aggravated by the fact that Webpack only loads resources from the federated module at runtime, TypeScript, however, needs those during compilation. Long story short, there’s no obvious way to publish and fetch the compile-time types.</p>
 <p>If you are facing this problem, you have following options:</p>
 
--   referencing types across monorepo (if possible)
--   packaging your types for distribution via a package registry (e.g. npm)
--   @module-federation/typescript
+-- referencing types across monorepo (if possible)
+
+-- packaging your types for distribution via a package registry (e.g. npm)
+
+-- @module-federation/typescript
 
 <p>
 Something to keep in mind is that the host is becoming dependent on the remote types which means that each time remote changes its types, it can potentially break the host.
@@ -452,10 +526,13 @@ Something to keep in mind is that the host is becoming dependent on the remote t
 
 <div class="dense">
 
--   https://martinfowler.com/articles/micro-frontends.html
--   https://www.nearform.com/blog/react-micro-frontends-module-federation/
--   https://github.com/module-federation/universe/tree/main/packages/native-federation-tests by NearForm
--   https://github.com/module-federation/universe/tree/main/packages/native-federation-typescript by NearForm
+-- https://martinfowler.com/articles/micro-frontends.html
+
+-- https://www.nearform.com/blog/react-micro-frontends-module-federation/
+
+-- https://github.com/module-federation/universe/tree/main/packages/native-federation-tests by NearForm
+
+-- https://github.com/module-federation/universe/tree/main/packages/native-federation-typescript by NearForm
 
 </div>
 
