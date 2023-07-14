@@ -1,20 +1,22 @@
 {
-  "dependencies": {
-    "@module-federation/nextjs-mf": "^7.0.2",
-    "next": "latest",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "tailwindcss": "2.1.4"
-  },
   "name": "step-02-setting-up-host",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 8080",
     "build": "next build",
-    "start": "next start",
+    "start": "concurrently \"cd ../step-01-setting-up-remote; npm start\" \"npm run dev\"",
     "lint": "next lint"
+  },
+  "dependencies": {
+    "@module-federation/nextjs-mf": "7.0.2",
+    "next-transpile-modules": "10.0.0",
+    "next": "13.4.9",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "eslint": "8.44.0",
+    "eslint-config-next": "13.4.9"
   }
 }
