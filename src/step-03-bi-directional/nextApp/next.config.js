@@ -14,10 +14,10 @@ module.exports = {
             './nextjs-layout-box': './components/nextjs-layout-box.js'
           },
           shared: {
-            // react: {
-            //   requiredVersion: false,
-            //   singleton: true,
-            // },
+            react: {
+              requiredVersion: false,
+              singleton: true,
+            },
           },
           extraOptions: {
             skipSharingNextInternals: true,

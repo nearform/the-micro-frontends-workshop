@@ -54,13 +54,14 @@ module.exports = {
       },
       exposes: {
         './Nav': './src/components/Nav',
+        './Title': './src/components/Title'
       },
       shared: {
-        // react: {
-        //   // Notice shared are NOT eager here.
-        //   requiredVersion: false,
-        //   singleton: true,
-        // },
+        react: {
+          // Notice shared are NOT eager here.
+          requiredVersion: false,
+          singleton: true,
+        },
       },
     }),
     new HtmlWebpackPlugin({

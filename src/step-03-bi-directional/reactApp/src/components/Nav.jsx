@@ -1,21 +1,24 @@
 import * as React from 'react';
 
-const Nav = () => {
+const Nav = ({ links }) => {
   return (
     <nav
       style={{
-        background: 'red',
-        width: '100%',
-        height: '100px',
-        color: 'white',
-        textAlign: 'center',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: '24px',
+        background: "#872642",
+        width: "100%",
+        color: "white",
+        textAlign: "center",
+        display: "block"
       }}
     >
-      This component is from the Host React App hosted at localhost:8080
+      <ul>
+        { links.map((link, i) => (
+          <li key={i} style={{display: "inline-block", padding: "10px 20px" }}>
+            <a style={{color: "#F6C026"}} href={link.url}>{link.label}</a>
+          </li> )
+          )
+        }
+      </ul>
     </nav>
   );
 };
