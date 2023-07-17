@@ -2,7 +2,8 @@
   "name": "the-micro-frontend-workshop",
   "private": true,
   "workspaces": [
-    "src/setting-up-remote"
+    "src/step-01-setting-up-remote",
+    "src/step-02-setting-up-host"
   ],
   "version": "1.0.0",
   "license": "",
