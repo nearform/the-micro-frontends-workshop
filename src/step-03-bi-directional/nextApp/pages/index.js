@@ -1,19 +1,42 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import dynamic from 'next/dynamic';
-import LayoutBox from '../components/nextjs-layout-box';
+import Head from 'next/head'
+import styles from '../styles/Home.module.css'
+import dynamic from 'next/dynamic'
+import LayoutBox from '../components/nextjs-layout-box'
+import Table from '../components/nextjs-table'
 
 const Nav = dynamic(() => import('remote/Nav'), {
   ssr: false,
-});
+})
 
 const Title = dynamic(() => import('remote/Title'), {
   ssr: false,
-});
+})
 
 const links = [
-  {url: "/", label: "Home"},
-  {url: "https://nextjs.org/", label: "Learn more about Next.js"}
+  { url: '/', label: 'Home' },
+  { url: 'https://nextjs.org/', label: 'Learn more about Next.js' },
+  {
+    url: 'https://webpack.js.org/concepts/module-federation/',
+    label: 'Learn more about Module Federation',
+  },
+]
+
+const tableData = [
+  {
+    company: 'Nutrien',
+    state: 'Saskatchewan',
+    country: 'Canada',
+  },
+  {
+    company: 'Walmart',
+    state: 'Delaware',
+    country: 'USA',
+  },
+  {
+    company: 'Microsfot',
+    state: 'Washington',
+    country: 'USA',
+  },
 ]
 
 export default function Home() {
@@ -25,10 +48,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <LayoutBox>        
-          <Title title="This is Next.js Host App" />
-          <Nav links={links} />    
+      <LayoutBox>
+        <Title title="This is Next.js App Hosted at localhost:8081" />
+        <Nav links={links} />
+        <Table data={tableData} />
       </LayoutBox>
     </div>
-  );
+  )
 }

@@ -11,7 +11,8 @@ module.exports = {
           },
           filename: 'static/chunks/remoteEntry.js',
           exposes: {            
-            './nextjs-layout-box': './components/nextjs-layout-box.js'
+            './nextjs-layout-box': './components/nextjs-layout-box.js',
+            './nextjs-table': './components/nextjs-table.js'
           },
           shared: {
             react: {
