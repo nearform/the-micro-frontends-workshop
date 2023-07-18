@@ -8,4 +8,4 @@ Make sure that you have installed all dependencies by running `yarn install` fro
 
 From `step-03-bi-directional` folder run `yarn install`.
 
-Run `yarn start` from the same folder. This will 
+Run `yarn start` from the same folder. This will build both React.js and Next.js app on ports `8080` and `8081` respectively.
