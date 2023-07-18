@@ -18,20 +18,25 @@ const links = [
 
 const tableData = [
   {
-    company: 'Nutrien',
-    state: 'Saskatchewan',
+    company: 'IBM',
+    state: 'New York',
+    country: 'USA',
+  },
+  {
+    company: 'Telus',
+    state: 'British Colombia',
     country: 'Canada',
   },
   {
-    company: 'Walmart',
-    state: 'Delaware',
-    country: 'USA',
+    company: 'William Hill',
+    state: 'England',
+    country: 'UK',
   },
   {
-    company: 'Microsfot',
-    state: 'Washington',
-    country: 'USA',
-  },
+    company: 'Renalytix',
+    state: 'England',
+    country: 'UK',
+  }
 ]
 
 function App() {
