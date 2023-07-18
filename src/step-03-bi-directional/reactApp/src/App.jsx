@@ -3,6 +3,8 @@ import LayoutBox from 'remote/nextjs-layout-box';
 import Nav from './components/Nav';
 import Title from './components/Title';
 
+import "./style.css"
+
 const links = [
   {url: "/", label: "Home"},
   {url: "https://react.dev/", label: "Learn more about React.js"}
