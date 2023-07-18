@@ -669,6 +669,9 @@ module.exports = {
   ],
 };
 ```
+
+---
+
 # Federated Types
 
 <div class="dense">
