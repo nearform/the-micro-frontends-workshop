@@ -439,6 +439,177 @@ export default function Home() {
 
 ---
 
+# Step 3: Setting up Bi-Directional Example
+
+<div class="dense">
+
+- In this step we are going to demonstrate Module Federation's bi-directional ability to share modules between multiple apps that can act both as the host and the remote at the same time by putting together what we learned in the previous two steps.  
+
+</div>
+
+---
+
+# Step 3: Exercise
+
+<div class="dense">
+
+- Set up a `Next.js application` (you can use the same application from step 2) on port `8080`.
+- Create a `LayoutBox` component that takes `children` in `components/nextjs-layout-box.js` file.
+- Create a `Table` component that takes `data` object as props and renders an HTML table in `components/nextjs-table.js`.
+- Expose both components as remotes.
+
+</div>
+
+---
+
+# Step 3: Exercise /2
+
+<div class="dense">
+
+- Set up a `React.js application` (you can use the same application from step 1) on port `8081`.
+- Create a `Nav` component that takes `links` object as props and displays links as an unordered list in `src/components/Nav.jsx` file.
+- Create a `Title` component that takes `title` string as props and returns the title as an `h1` element in `src/components/Title.jsx` file.
+- Expose both components and configure both applications so they can consume those components from each other.
+
+</div>
+
+---
+
+# Step 3: Solution
+
+```js
+// nextjs-layout-box.js
+import * as React from 'react';
+
+const LayoutBox = ({ children }) => {
+  return (
+    <div
+      style={{
+        background: "#4C4556",
+        width: "90%",
+        height: "100vh",
+        color: "white",
+        textAlign: "center",
+        fontSize: "24px",
+        margin: "auto",
+        overflow: "hidden"
+      }}
+    >
+      { children }
+    </div>
+  );
+};
+
+export default LayoutBox;
+
+```
+
+---
+
+# Step 3: Solution /2
+
+```js
+// nextjs-table.js
+import * as React from 'react'
+
+const Table = ({ data }) => {
+  return (
+    <table>
+      <thead>
+        <tr><th>Company</th><th>State</th><th>Country</th></tr>
+      </thead>
+      <tbody>
+        {data.map((d, i) => <tr key={d.i}><td>{d.company}</td><td>{d.state}</td><td>{d.country}</td></tr>)}
+      </tbody>
+    </table>
+  )
+}
+
+export default Table
+
+```
+
+---
+
+# Step 3: Solution /2
+
+```js
+// next.config.js
+//...
+new NextFederationPlugin({
+    name: 'nextApp',
+    remotes: {
+        remote: 'reactApp@http://localhost:8080/remoteEntry.js',
+    },
+    exposes: {            
+        './nextjs-layout-box': './components/nextjs-layout-box.js',
+        './nextjs-table': './components/nextjs-table.js'
+    },
+// ...
+})
+```
+
+---
+
+# Step 3: Solution /3
+
+```js
+// Nav.jsx
+import * as React from 'react';
+const Nav = ({ links }) => {
+  return (
+    <nav
+      style={{ background: "#872642", width: "100%", color: "white", textAlign: "center", display: "block"
+      }}
+    >
+      <ul>
+        { links.map((link, i) => (
+          <li key={i} style={{display: "inline-block", padding: "10px 20px" }}>
+            <a style={{color: "#F6C026"}} href={link.url}>{link.label}</a>
+          </li> )
+          )
+        }
+      </ul>
+    </nav>
+  );
+};
+export default Nav;
+```
+
+---
+
+# Step 3: Solution /4
+
+```js
+// Title.jsx
+import * as React from 'react';
+const Title = ({title}) => <h1 style={{fontSize: "30px", paddingTop: "10px"}}>{title}</h1>;
+export default Title
+```
+
+---
+
+# Step 3: Solution /5
+
+```js
+// webpack.config.js
+// ...
+new ModuleFederationPlugin({
+      name: 'reactApp',
+      filename: 'remoteEntry.js',
+      remotes: {
+        remote: 'nextApp@http://localhost:8081/_next/static/chunks/remoteEntry.js',
+      },
+      exposes: {
+        './Nav': './src/components/Nav',
+        './Title': './src/components/Title'
+      },
+// ...
+)}
+```
+
+---
+
 # Shared dependencies
 
 <div class="dense">
