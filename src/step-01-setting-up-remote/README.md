@@ -4,4 +4,4 @@ This example demos a basic remote application on port `3002` which exposes `Butt
 
 # Running Demo
 
-Run `npm start`.
+From `src/step-01-setting-up-remote` run `yarn start`.
