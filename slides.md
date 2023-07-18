@@ -367,17 +367,73 @@ For the second one you should see a `script` that exposes our button element for
 
 ---
 
+# Step 2: Setting up the Host Application
+
+<div class="dense">
+
+## General Steps:
+
+-- In order to start consuming modules, we need to configure the plugin's `remotes` parameter.
+
+-- This parameter can take an array of different remotes.
+
+```js
+// webpack.config.js file
+// ...
+remotes: {
+    remote: 'remote@http://localhost:3002/remoteEntry.js',
+},
+// ...
+```
+</div>
+
+---
+
+# Step 2: Setting up the Host Application /2
+
+<div class="dense">
+
+## Next.js specific steps:
+
+-- To enable Module Federation in Next.js we need to import `NextFederationPlugin` in `next.config.js` file since `ModuleFederationPlugin` and `webpack.config.js` are not used in Next.js apps.
+
+-- `filename` property needs to be set using the `static/chunks/{fileName}.js` pattern.
+
+```js
+// next.config.js
+const { NextFederationPlugin } = require('@module-federation/nextjs-mf');
+// ...
+config.plugins.push(
+    new NextFederationPlugin({
+        name: 'host',
+        remotes: {
+            remote: 'remote@http://localhost:3002/remoteEntry.js',
+        },
+    filename: 'static/chunks/remoteEntry.js'
+    }),
+);
+// ...
+```
+
+</div>
+
+---
+
 # Step 2: Exercise 💻
 
 <div class="dense">
 
-Create a Next.js app that:
+## Create a Next.js app and inside of it:  
 
--- displays a simple layout (e.g. a distinctive background);
+-- Create `components/nextjs-layout-box.js` file.
 
--- is configured as a host;
+-- Place a simple `LayoutBox` component that takes `children` props (e.g. a distinctive background) in that file.
 
--- consumes a remote from Step 1.
+-- Configure the application as the host in `next.config.js` file.
+
+-- Make sure that it also consumes the remote from Step 1 (port `3002`).
+
+-- Render the `LayoutBox` component and display the remote component inside of it.
 
 </div>
 
@@ -385,57 +441,75 @@ Create a Next.js app that:
 
 # Step 2: Solution
 
-```bash
-npx create-next-app@latest the-host
-cd the-host && npm i
-```
-
 ```javascript
 // next.config.js
-const NextFederationPlugin = require('@module-federation/nextjs-mf')
+const { NextFederationPlugin } = require('@module-federation/nextjs-mf');
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-    webpack(config, options) {
-        if (!options.isServer) {
-            config.plugins.push(
-                new NextFederationPlugin({
-                    name: 'host',
-                    remotes: {
-                        remote: 'remote@http://localhost:3001/remote.js',
-                    },
-                    filename: 'static/chunks/remoteEntry.js',
-                })
-            )
-        }
+module.exports = {
+  webpack(config, options) {
+    if (!options.isServer) {
+      config.plugins.push(
+          new NextFederationPlugin({
+            name: 'host',
+            remotes: {
+              remote: 'remote@http://localhost:3002/remoteEntry.js',
+            },
+            filename: 'static/chunks/remoteEntry.js'
+          }),
+      );
+    }
 
-        return config
-    },
-}
-
-module.exports = nextConfig
-```
-
-```javascript
-// app/page.js
-export default function Home() {
-    return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-                <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-                    Hello, I am your Host!
-                </p>
-            </div>
-        </main>
-    )
-}
+    return config;
+  },
+};
 ```
 
 ---
 
-# Step 2: Result
+# Step 2: Solution /2
 
-...
+```js
+// components/nextjs-layout-box.js.js
+import * as React from 'react';
+
+const LayoutBox = ({ children }) => {
+  return (
+    <div
+      style={{
+        background: "cadetblue",
+        width: "90%",
+        height: "100vh",
+        textAlign: "center",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "auto"
+      }}
+    >
+      { children }
+    </div>
+  );
+};
+
+export default LayoutBox;
+
+```
+
+---
+
+# Step 2: Trying it Out
+
+<div class="dense">
+
+## From your browser visit :
+
+```js
+http://localhost:8080
+
+```
+
+You should see the `LayoutBox` component acting as a wrapper and the remote component displayed inside of it.
+</div>
 
 ---
 
@@ -443,7 +517,7 @@ export default function Home() {
 
 <div class="dense">
 
-- In this step we are going to demonstrate Module Federation's bi-directional ability to share modules between multiple apps that can act both as the host and the remote at the same time by putting together what we learned in the previous two steps.  
+In this step we are going to demonstrate Module Federation's bi-directional ability to share modules between multiple apps that can act both as the host and the remote at the same time by putting together what we learned in the previous two steps.  
 
 </div>
 
@@ -453,10 +527,14 @@ export default function Home() {
 
 <div class="dense">
 
-- Set up a `Next.js application` (you can use the same application from step 2) on port `8080`.
-- Create a `LayoutBox` component that takes `children` in `components/nextjs-layout-box.js` file.
-- Create a `Table` component that takes `data` object as props and renders an HTML table in `components/nextjs-table.js`.
-- Expose both components as remotes.
+
+-- Set up a `Next.js application` (you can use the same application from step 2) on port `8080`.
+
+-- Create a `LayoutBox` component that takes `children` in `components/nextjs-layout-box.js` file.
+
+-- Create a `Table` component that takes `data` object as props and renders an HTML table in `components/nextjs-table.js`.
+
+-- Expose both components as remotes.
 
 </div>
 
@@ -466,10 +544,14 @@ export default function Home() {
 
 <div class="dense">
 
-- Set up a `React.js application` (you can use the same application from step 1) on port `8081`.
-- Create a `Nav` component that takes `links` object as props and displays links as an unordered list in `src/components/Nav.jsx` file.
-- Create a `Title` component that takes `title` string as props and returns the title as an `h1` element in `src/components/Title.jsx` file.
-- Expose both components and configure both applications so they can consume those components from each other.
+
+-- Set up a `React.js application` (you can use the same application from step 1) on port `8081`.
+
+-- Create a `Nav` component that takes `links` object as props and displays links as an unordered list in `src/components/Nav.jsx` file.
+
+-- Create a `Title` component that takes `title` string as props and returns the title as an `h1` element in `src/components/Title.jsx` file.
+
+-- Expose both components and configure both applications so they can consume those components from each other.
 
 </div>
 
