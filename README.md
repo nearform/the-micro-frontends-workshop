@@ -14,8 +14,8 @@
 
 ## Setup
 
-- `npm install`
+- `yarn install`
 
 ## Presenting
 
-- `npm start`
+- `yarn start`
