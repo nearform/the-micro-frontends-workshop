@@ -23,8 +23,7 @@
     "webpack-cli": "4.10.0"
   },
   "scripts": {
-    "dev": "concurrently \"npm run start\" \"npm run serve\"",
-    "start": "webpack --watch",
+    "start": "webpack-cli serve",
     "build": "webpack --mode production",
     "serve": "serve dist -p 8080",
     "clean": "rm -rf dist"
