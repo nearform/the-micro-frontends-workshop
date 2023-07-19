@@ -186,7 +186,7 @@ plugins: [
     new ModuleFederationPlugin({
       name: 'remoteAppName',
       filename: 'remoteEntry.js',
-      exposes: { './Button': './src/Button' }
+      exposes: { './Nav': './src/components/Nav' }
     }),
   ],
 ```
@@ -244,7 +244,7 @@ Shared module is not available for eager consumption
 
 In `src` folder of the provided basic React application:
 
--- create a `Button.js` file with `<Button />` element that returns a basic HTML `button` with `Remote Button` text;
+-- Create a `Nav` component that takes `links` object as props and displays links as an unordered list in `src/components/Nav.jsx` file.
 
 -- render that element inside `App.js`;
 
@@ -273,32 +273,55 @@ In `webpack.config.js` file:
 # Step 1: Solution
 
 ```js
-// src/Button.js
-import React from 'react'
-
-const Button = () => <button>Remote Button</button>
-
-export default Button
-```
-
-```js
-// src/App.js
-import Button from './Button'
-import React from 'react'
-
-const App = () => (
-    <div>
-        <h1>Basic Remote Application</h1>
-        <Button />
-    </div>
-)
-
-export default App
+// Nav.jsx
+import * as React from 'react';
+const Nav = ({ links }) => {
+  return (
+    <nav
+      style={{ background: "#872642", width: "100%", color: "white", textAlign: "center", display: "block"
+      }}
+    >
+      <ul>
+        { links.map((link, i) => (
+          <li key={i} style={{display: "inline-block", padding: "10px 20px" }}>
+            <a style={{color: "#F6C026"}} href={link.url}>{link.label}</a>
+          </li> )
+          )
+        }
+      </ul>
+    </nav>
+  );
+};
+export default Nav;
 ```
 
 ---
 
 # Step 1: Solution /2
+
+```js
+// src/App.js
+import React from 'react'
+import Nav from './components/Nav'
+
+const links = [
+  { url: '/', label: 'Home' },
+  { url: 'https://react.dev/', label: 'Learn more about React.js' },
+  { url: 'https://webpack.js.org/concepts/module-federation/', label: 'Learn more about Module Federation' }
+]
+
+const App = () => (
+    <div>
+        <h1>Basic Remote Application</h1>
+        <Nav links={links}>
+    </div>
+)
+export default App
+```
+
+---
+
+# Step 1: Solution /3
 
 ```js
 // src/bootstrap.js
@@ -331,7 +354,7 @@ module.exports = {
             name: 'remote',
             filename: 'remoteEntry.js',
             exposes: {
-                './Button': './src/Button',
+                './Nav': './src/components/Nav',
             },
         }),
         // .....
