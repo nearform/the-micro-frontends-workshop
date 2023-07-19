@@ -4,16 +4,14 @@ const LayoutBox = ({ children }) => {
   return (
     <div
       style={{
-        background: 'cadetblue',
-        width: '90%',
-        height: '100vh',
-        color: 'white',
-        textAlign: 'center',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: '24px',
-        margin: "auto"
+        background: "#2165e3",
+        width: "90%",
+        height: "100vh",
+        color: "white",
+        textAlign: "center",
+        fontSize: "24px",
+        margin: "auto",
+        overflow: "hidden"
       }}
     >
       { children }

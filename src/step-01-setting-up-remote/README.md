@@ -1,6 +1,6 @@
 # Basic One-Way Example
 
-This example demos a basic remote application on port `3002` which exposes `Button` component.
+This example demos a basic remote application on port `3002` which exposes `Nav` component.
 
 # Running Demo
 
