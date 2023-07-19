@@ -17,7 +17,13 @@ module.exports = {
           },
           shared: {
             react: {
-              requiredVersion: false,
+              requiredVersion:
+                require('./package.json').dependencies.react,
+              singleton: true,
+            },
+            'react-dom': {
+              requiredVersion:
+                require('./package.json').dependencies['react-dom'],
               singleton: true,
             },
           },
