@@ -4,7 +4,7 @@ const LayoutBox = ({ children }) => {
   return (
     <div
       style={{
-        background: "#4C4556",
+        background: "#2165e3",
         width: "90%",
         height: "100vh",
         color: "white",
