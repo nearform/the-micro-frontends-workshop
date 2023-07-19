@@ -20,7 +20,7 @@ table {
   border-collapse: collapse;
   width: 100%;
   max-width: 800px;
-  margin: 100px auto 0;
+  margin: 10px auto 0;
 }
 
 td, th {
@@ -30,9 +30,10 @@ td, th {
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #fff;
+  color: #2165e3;
 }
 
 thead tr {
-  background: #f6c025;
+  background: #120048;
 }

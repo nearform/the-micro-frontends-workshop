@@ -4,7 +4,7 @@ const Nav = ({ links }) => {
   return (
     <nav
       style={{
-        background: "#872642",
+        background: "#fb7a9c",
         width: "100%",
         color: "white",
         textAlign: "center",
@@ -14,7 +14,7 @@ const Nav = ({ links }) => {
       <ul>
         { links.map((link, i) => (
           <li key={i} style={{display: "inline-block", padding: "10px 20px" }}>
-            <a style={{color: "#F6C026"}} href={link.url}>{link.label}</a>
+            <a style={{color: "#120048"}} href={link.url}>{link.label}</a>
           </li> )
           )
         }
