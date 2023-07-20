@@ -446,7 +446,7 @@ config.plugins.push(
 
 <div class="dense">
 
-## Create a Next.js app and inside of it:  
+## Create a Next.js app and inside of it:
 
 -- Create `components/nextjs-layout-box.js` file.
 
@@ -540,7 +540,7 @@ You should see the `LayoutBox` component acting as a wrapper and the remote comp
 
 <div class="dense">
 
-In this step we are going to demonstrate Module Federation's bi-directional ability to share modules between multiple apps that can act both as the host and the remote at the same time by putting together what we learned in the previous two steps.  
+In this step we are going to demonstrate Module Federation's bi-directional ability to share modules between multiple apps that can act both as the host and the remote at the same time by putting together what we learned in the previous two steps.
 
 </div>
 
@@ -646,7 +646,7 @@ new NextFederationPlugin({
     remotes: {
         remote: 'reactApp@http://localhost:8080/remoteEntry.js',
     },
-    exposes: {            
+    exposes: {
         './nextjs-layout-box': './components/nextjs-layout-box.js',
         './nextjs-table': './components/nextjs-table.js'
     },
@@ -754,6 +754,7 @@ Please follow the guidelines from Zack Jackson (inventor & co-creator of module 
 
 const path = require('path');
 const { ModuleFederationPlugin } = require('webpack').container;
+const packageJsonDependencies = require('./package.json').dependencies
 
 module.exports = {
   entry: './src/index.js',
@@ -767,13 +768,111 @@ module.exports = {
       filename: 'remoteEntry.js',
       exposes: { './Button': './src/components/Button' },
       shared: {
-        react: { singleton: true, requiredVersion: '18.2.0' },
-        'react-dom': { singleton: true, requiredVersion: '18.2.0' },
+        react: { singleton: true, requiredVersion: packageJsonDependencies.react },
+        'react-dom': { singleton: true, requiredVersion: packageJsonDependencies['react-dom'] },
       },
     }),
   ],
 };
 ```
+
+---
+
+# Step 4: Setting up Shared Modules Example
+
+<div class="dense">
+
+In this step we are going to demonstrate sharing dependencies (React and React DOM) across federated modules.
+
+</div>
+
+---
+
+# Step 4: Exercise
+
+<div class="dense">
+
+-- take the applications you created as part of step 3 exercises;
+
+-- modify Webpack config of the React app to have React and React DOM as shared dependencies;
+
+-- modify Next.js config of the Next.js app to have React and React DOM as shared dependencies;
+
+-- set the versions of these shared dependencies to be read from respective `package.json` files;
+
+-- make sure the dependencies are being shared as singletons;
+
+-- try changing the version of the React and React DOM in the `package.json` file of the React app to a previous one and make sure you get a warning about version mismatch in the console.
+
+</div>
+
+---
+
+# Step 4: Solution
+
+```js
+// next.config.js
+const packageJsonDependencies = require('./package.json').dependencies
+
+// ...
+    new NextFederationPlugin({
+// ...
+      shared: {
+        react: {
+          requiredVersion:
+            packageJsonDependencies.react,
+          singleton: true,
+        },
+        'react-dom': {
+          requiredVersion:
+            packageJsonDependencies['react-dom'],
+          singleton: true,
+        },
+      },
+      extraOptions: {
+        skipSharingNextInternals: true,
+      }
+    })
+// ...
+```
+
+---
+
+# Step 4: Solution /2
+
+```js
+// webpack.config.js
+const packageJsonDependencies = require('./package.json').dependencies
+
+// ...
+    new ModuleFederationPlugin({
+// ...
+      shared: {
+        react: {
+          requiredVersion:
+            packageJsonDependencies.react,
+          singleton: true,
+        },
+        'react-dom': {
+          requiredVersion:
+            packageJsonDependencies['react-dom'],
+          singleton: true,
+        },
+      },
+    }),
+// ...
+)}
+```
+
+---
+
+# Step 4: Result
+
+![Requests of the Next.js app](/images/step-04-results1.png "Requests of the Next.js app")
+
+![Requests of the React app](/images/step-04-results2.png "Requests of the React app")
+
+![Version mismatch warning](/images/step-04-results3.png "Version mismatch warning")
 
 ---
 
@@ -793,7 +892,7 @@ When it comes to TypeScript applications, the most common problem with using ext
 -- @module-federation/native-federation-typescript.
 
 <p>
-Something to keep in mind is that the host is becoming dependent on the remote types which means that each time remote changes its types, it can potentially break the host.
+Something to keep in mind when using remote types in the host is that as a result the host can become dependent on them. This means that each time remote changes its types, it can potentially break the host.
 </p>
 
 </div>

@@ -1,4 +1,5 @@
 const NextFederationPlugin = require('@module-federation/nextjs-mf/lib/NextFederationPlugin')
+const packageJsonDependencies = require('./package.json').dependencies
 
 module.exports = {
   webpack(config, options) {
@@ -17,7 +18,11 @@ module.exports = {
           },
           shared: {
             react: {
-              requiredVersion: false,
+              requiredVersion: packageJsonDependencies.react,
+              singleton: true,
+            },
+            'react-dom': {
+              requiredVersion: packageJsonDependencies['react-dom'],
               singleton: true,
             },
           },
@@ -29,6 +34,5 @@ module.exports = {
     }
     return config
   },
-  // your original next.config.js export
   reactStrictMode: true,
 }
