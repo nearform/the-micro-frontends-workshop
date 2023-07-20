@@ -15,7 +15,8 @@ jobs:
         with:
           node-version-file: .nvmrc
       - run: |
-          npm i                      
+          npm i          
+          npm run lint    
   automerge:
     needs: build
     runs-on: ubuntu-latest
