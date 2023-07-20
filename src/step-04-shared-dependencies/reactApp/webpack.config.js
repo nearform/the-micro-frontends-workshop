@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ModuleFederationPlugin =
   require('webpack').container.ModuleFederationPlugin
+const packageJsonDependencies = require('./package.json').dependencies
 
 module.exports = {
   entry: './src/index',
@@ -10,17 +11,22 @@ module.exports = {
     },
   },
   cache: false,
+
   mode: 'development',
   devtool: 'source-map',
+
   optimization: {
     minimize: false,
   },
+
   output: {
     publicPath: 'auto',
   },
+
   resolve: {
     extensions: ['.jsx', '.js', '.json', '.mjs'],
   },
+
   module: {
     rules: [
       {
@@ -49,6 +55,7 @@ module.exports = {
       },
     ],
   },
+
   plugins: [
     new ModuleFederationPlugin({
       name: 'reactApp',
@@ -61,7 +68,16 @@ module.exports = {
         './Nav': './src/components/Nav',
         './Title': './src/components/Title',
       },
-      shared: {},
+      shared: {
+        react: {
+          requiredVersion: packageJsonDependencies.react,
+          singleton: true,
+        },
+        'react-dom': {
+          requiredVersion: packageJsonDependencies['react-dom'],
+          singleton: true,
+        },
+      },
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
