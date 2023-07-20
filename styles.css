@@ -54,3 +54,7 @@ ol {
 .bigger {
   font-size: 1.8rem;
 }
+
+.sublist {
+  margin-left: 2rem;
+}
