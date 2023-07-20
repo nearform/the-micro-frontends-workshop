@@ -4,7 +4,8 @@
   "workspaces": [
     "src/step-01-setting-up-remote",
     "src/step-02-setting-up-host",
-    "src/step-03-bi-directional"
+    "src/step-03-bi-directional",
+    "src/step-04-shared-dependencies"
   ],
   "version": "1.0.0",
   "license": "",

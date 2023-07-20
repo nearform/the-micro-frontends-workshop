@@ -11,8 +11,8 @@ const Table = ({ data }) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((d, i) => (
-          <tr key={`${d}.${i}`}>
+        {data.map(d => (
+          <tr key={d.company}>
             <td>{d.company}</td>
             <td>{d.state}</td>
             <td>{d.country}</td>
