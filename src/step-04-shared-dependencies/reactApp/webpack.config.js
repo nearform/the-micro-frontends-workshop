@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ModuleFederationPlugin =
   require('webpack').container.ModuleFederationPlugin
+const packageJsonDependencies = require('./package.json').dependencies
 
 module.exports = {
   entry: './src/index',
@@ -44,6 +45,14 @@ module.exports = {
         },
       },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ],
   },
 
@@ -61,13 +70,11 @@ module.exports = {
       },
       shared: {
         react: {
-          requiredVersion:
-            require('./package.json').dependencies.react,
+          requiredVersion: packageJsonDependencies.react,
           singleton: true,
         },
         'react-dom': {
-          requiredVersion:
-            require('./package.json').dependencies['react-dom'],
+          requiredVersion: packageJsonDependencies['react-dom'],
           singleton: true,
         },
       },

@@ -731,6 +731,7 @@ Please follow the guidelines from Zack Jackson (inventor & co-creator of module 
 
 const path = require('path');
 const { ModuleFederationPlugin } = require('webpack').container;
+const packageJsonDependencies = require('./package.json').dependencies
 
 module.exports = {
   entry: './src/index.js',
@@ -744,8 +745,8 @@ module.exports = {
       filename: 'remoteEntry.js',
       exposes: { './Button': './src/components/Button' },
       shared: {
-        react: { singleton: true, requiredVersion: require('./package.json').dependencies.react },
-        'react-dom': { singleton: true, requiredVersion: require('./package.json').dependencies['react-dom'] },
+        react: { singleton: true, requiredVersion: packageJsonDependencies.react },
+        'react-dom': { singleton: true, requiredVersion: packageJsonDependencies['react-dom'] },
       },
     }),
   ],
@@ -788,18 +789,20 @@ In this step we are going to demonstrate sharing dependencies (React and React D
 
 ```js
 // next.config.js
+const packageJsonDependencies = require('./package.json').dependencies
+
 // ...
     new NextFederationPlugin({
 // ...
       shared: {
         react: {
           requiredVersion:
-            require('./package.json').dependencies.react,
+            packageJsonDependencies.react,
           singleton: true,
         },
         'react-dom': {
           requiredVersion:
-            require('./package.json').dependencies['react-dom'],
+            packageJsonDependencies['react-dom'],
           singleton: true,
         },
       },
@@ -816,18 +819,20 @@ In this step we are going to demonstrate sharing dependencies (React and React D
 
 ```js
 // webpack.config.js
+const packageJsonDependencies = require('./package.json').dependencies
+
 // ...
     new ModuleFederationPlugin({
 // ...
       shared: {
         react: {
           requiredVersion:
-            require('./package.json').dependencies.react,
+            packageJsonDependencies.react,
           singleton: true,
         },
         'react-dom': {
           requiredVersion:
-            require('./package.json').dependencies['react-dom'],
+            packageJsonDependencies['react-dom'],
           singleton: true,
         },
       },

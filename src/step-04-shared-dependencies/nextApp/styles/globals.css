@@ -2,8 +2,9 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
 }
 
 a {
@@ -20,10 +21,11 @@ table {
   border-collapse: collapse;
   width: 100%;
   max-width: 800px;
-  margin: 100px auto 0;
+  margin: 10px auto 0;
 }
 
-td, th {
+td,
+th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
