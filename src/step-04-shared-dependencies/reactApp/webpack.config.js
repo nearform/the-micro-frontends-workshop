@@ -5,11 +5,6 @@ const packageJsonDependencies = require('./package.json').dependencies
 
 module.exports = {
   entry: './src/index',
-  entry: {
-    app: {
-      import: './src/index',
-    },
-  },
   cache: false,
 
   mode: 'development',
