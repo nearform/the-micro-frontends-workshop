@@ -140,9 +140,11 @@ cd the-micro-frontends-workshop && yarn install
 #### Example
 
 ```bash
-cd src/step-01-setting-up-remote
+cd src/step-03-bi-directional
 
-npm run start
+yarn install
+
+yarn run start
 ```
 
 ---

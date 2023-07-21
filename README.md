@@ -10,10 +10,13 @@
 - yarn => 1.2 - you can install it with via npm [`npm install --global yarn`](https://classic.yarnpkg.com/lang/en/docs/install/)
 
 
-## Setup
+## Installation and Running Exercises
 
-- `yarn install`
+- From the root of the project run `yarn install`.
+
+- To run an exercise, navigate to its folder and also run `yarn install` followed by `yarn start` from there. 
+    - Running `yarn install` is not necessary for `step 1` and `step 2` steps. 
 
 ## Presenting
 
-- `yarn start`
+- From the root of the project run `yarn start`.
