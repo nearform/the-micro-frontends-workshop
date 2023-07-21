@@ -383,6 +383,19 @@ For the second one you should see a `script` that exposes our button element for
 
 ---
 
+# Step 1: Result
+
+
+<img src="/images/step-01-results-1.png" class="rounded shadow" style="height: auto; width: 600px; margin: auto;" alt="React.js remote app">
+
+---
+
+# Step 1: Result /2
+
+<img src="/images/step-01-results-2.png" class="rounded shadow" style="height: auto; width: 600px; margin: auto;" alt="React.js remote app">
+
+---
+
 # Step 2: Setting up the Host Application
 
 <div class="dense">
@@ -474,7 +487,6 @@ module.exports = {
           }),
       );
     }
-
     return config;
   },
 };
@@ -526,6 +538,12 @@ http://localhost:8080
 
 You should see the `LayoutBox` component acting as a wrapper and the remote component displayed inside of it.
 </div>
+
+---
+
+# Step 2: Result
+
+<img src="/images/step-02-results.png" class="rounded shadow" style="height: auto; width: 600px; margin: auto;" alt="Next.js host app">
 
 ---
 
@@ -705,6 +723,44 @@ new ModuleFederationPlugin({
 // ...
 )}
 ```
+
+---
+
+# Step 3: Trying it Out
+
+<div class="dense">
+
+## From your browser visit :
+
+```js
+http://localhost:8080
+
+```
+
+You should see the `React.js` app wrapped in `LayoutBox` consumed from `Next.js` app as well as two local components `Nav` and `Title` and another remote `Table` component.
+
+## From your browser visit :
+
+```js
+http://localhost:8081
+
+```
+
+You should see the `Next.js` app wrapped in its local `LayoutBox` as well as two remote components `Nav` and `Title` and another local `Table` component.
+
+</div>
+
+---
+
+# Step 3: Result
+
+<img src="/images/step-03-results-1.jpg" class="rounded shadow" style="height: auto; width: 600px; margin: auto;" alt="React.js app">
+
+---
+
+# Step 3: Result /2
+
+<img src="/images/step-03-results-2.jpg" class="rounded shadow" style="height: auto; width: 600px; margin: auto;" alt="Next.js app">
 
 ---
 
