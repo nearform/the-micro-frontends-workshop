@@ -37,38 +37,31 @@ Module federation is one of the most popular approaches for implementing micro f
 
 ---
 
-# Other Approaches/1 — iFrames
+# Other Approaches/1
 
-<div class="bigger">
+<div class="dense">
 
-This approach is about rendering various micro frontends in separate iframes and composing those via a container application. The most obvious benefit of this approach is complete decoupling of the application components. However, this approach also has some substantial cons like composition complexity and high potential for performance issues.
+-- **runtime Web Components**: each micro frontend is mounted at a custom HTML element, and the container performs instantiation;
 
-</div>
+-- **runtime Javascript integration**: somewhat similar to both the previous approach and module federation, this one includes each micro frontend onto the page using a `<script>` tag; the container application becomes an entry point, decides which micro frontend to be mounted, and calls the relevant function telling the micro frontend when and where to get rendered; each build file can be deployed independently;
 
----
-
-# Other Approaches/2 — Edge-side Composition
-
-<div class="bigger">
-
-Edge-side composition assumes that micro frontends are assembled by the edge using the Edge Side Include (ESI) specification. Biggest cons are the fact that support differs depending on the CDN, and each vendor (Akamai, CloudFlare, Fastly, etc.) has its own features and limitations.
+-- **iFrames**: this approach is about rendering various micro frontends in separate iframes and composing those via a container application; the most obvious benefit of this approach is complete decoupling of the application components; however, this approach also has some substantial cons like composition complexity and high potential for performance issues;
 
 </div>
 
 ---
 
-# Other Approaches/3 — Dedicated Frameworks for MFE Composition
+# Other Approaches/2
 
-<div>
+-- **edge-side Composition**: edge-side composition assumes that micro frontends are assembled by the edge using the Edge Side Include (ESI) specification; biggest cons are the fact that support differs depending on the CDN, and each vendor (Akamai, CloudFlare, Fastly, etc.) has its own features and limitations;
 
-<p class="bigger">
-One of the easiest ways to compose micro frontends is by using a dedicated framework. Those frameworks can provide composition either on the client or the server side. Some of the most prominent examples include:
-</p>
+-- **dedicated Frameworks for MFE Composition**: one of the easiest ways to implement micro frontend architecture is to use a dedicated framework that takes care of all the ins and outs and lets you focus on the application code; some notable examples of such frameworks are listed below:
 
--- client-side: SingleSPA, Qiankun (based on SingleSPA), Luigi;
+<div class="sublist">
 
--- server-side: Ara, Bit, Open Components, Piral.
+  -- client-side: [SingleSPA](https://single-spa.js.org/), [Qiankun](https://qiankun.umijs.org/) (based on SingleSPA), [Luigi](https://luigi-project.io/);
 
+  -- server-side: [Ara](https://ara-framework.github.io/website/), [Bit](https://bit.dev/), [Open Components](https://opencomponents.github.io/), [Piral](https://piral.io/).
 </div>
 
 ---
@@ -109,13 +102,13 @@ When you build and run your applications, Webpack dynamically loads the federate
 
 -- Node LTS
 
--- npm >= 7
+-- yarn
 
 #### Setup
 
 ```bash
 git clone https://github.com/nearform/the-micro-frontends-workshop
-npm i
+cd the-micro-frontends-workshop && yarn install
 ```
 
 </div>
