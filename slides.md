@@ -7,7 +7,7 @@ lineNumbers: false
 
 <img class=logo src="/images/nearform.svg">
 
-# The Micro Frontend Workshop
+# The Micro Frontends Workshop
 
 <div class="copyright">
 
@@ -17,7 +17,7 @@ lineNumbers: false
 
 ---
 
-# What is Micro Frontend Architecture?
+## What is Micro Frontend Architecture?
 
 <div class="bigger">
 
@@ -27,7 +27,7 @@ The concept of <em>micro frontends</em> was first mentioned circa 2016 as an ext
 
 ---
 
-# What is Module Federation?
+## What is Module Federation?
 
 <div class="bigger">
 
@@ -37,7 +37,7 @@ Module federation is one of the most popular approaches for implementing micro f
 
 ---
 
-# Other Approaches/1
+## Other Approaches/1
 
 <div class="dense">
 
@@ -51,7 +51,7 @@ Module federation is one of the most popular approaches for implementing micro f
 
 ---
 
-# Other Approaches/2
+## Other Approaches/2
 
 -- **edge-side Composition**: edge-side composition assumes that micro frontends are assembled by the edge using the Edge Side Include (ESI) specification; biggest cons are the fact that support differs depending on the CDN, and each vendor (Akamai, CloudFlare, Fastly, etc.) has its own features and limitations;
 
@@ -66,20 +66,20 @@ Module federation is one of the most popular approaches for implementing micro f
 
 ---
 
-# Glossary
+## Glossary
 
 <div class="dense">
 
 -- a **host** is an application that includes the initial chunks of our code, the ones that will be used to bootstrap our container – as part of module federation, those are just referenced to a remote, which allows for smaller bundle sizes and shorter initial load times;
 
--- a **remote** is an module that is being consumed by the host, and it can be both shared components or common dependencies to be used by different hosts;
+-- a **remote** is a module that is being consumed by the host, and it can be either shared components or common dependencies to be used by different hosts;
 
 -- a **bidirectional host** can be either a host or a remote (or both), consuming other applications or providing some code to other hosts.
 </div>
 
 ---
 
-# Module federation with Webpack
+## Module federation with Webpack
 
 <div>
 <p>As we mentioned earlier, initially module federation was implemented as a plugin introduced in Webpack 5.
@@ -94,17 +94,17 @@ When you build and run your applications, Webpack dynamically loads the federate
 
 ---
 
-# Getting started
+## Getting started
 
 <div class="dense">
 
-#### Requirements
+### Requirements
 
 -- Node LTS
 
 -- yarn
 
-#### Setup
+### Setup
 
 ```bash
 git clone https://github.com/nearform/the-micro-frontends-workshop
@@ -115,7 +115,7 @@ cd the-micro-frontends-workshop && yarn install
 
 ---
 
-# Workshop structure
+## Workshop structure
 
 <div class="dense">
 
@@ -131,13 +131,13 @@ cd the-micro-frontends-workshop && yarn install
 
 ---
 
-# Running the modules
+## Running the modules
 
 -- `cd src/step-{n}-{name}`
 
 -- Check out README.md
 
-#### Example
+### Example
 
 ```bash
 cd src/step-01-setting-up-remote
@@ -147,7 +147,7 @@ npm run start
 
 ---
 
-# Step 1: Setting up the Remote
+## Step 1: Setting up the Remote
 
 <div class="dense">
 
@@ -159,11 +159,11 @@ npm run start
 
 ---
 
-# Step 1: Setting up the Remote /2
+## Step 1: Setting up the Remote /2
 
 <div class="dense">
 
-## Configuring `webpack.config.js` file
+### Configuring `webpack.config.js` file
 
 In order to enable module federation we need to import `ModuleFederationPlugin` from Webpack on top of this file.
 
@@ -188,7 +188,7 @@ plugins: [
 
 ---
 
-# Step 1: Setting up the Remote /3
+## Step 1: Setting up the Remote /3
 
 <div class="dense">
 
@@ -202,11 +202,11 @@ plugins: [
 
 ---
 
-# Step 1: Setting up the Remote /4
+## Step 1: Setting up the Remote /4
 
 <div class="dense">
 
-## Adding an extra layer of indirection to the entire app
+### Adding an extra layer of indirection to the entire app
 
 We need `index.js` to be app's entry point but inside of it we need to import another file `bootstrap.js` (named this way by convention) that renders the entire app. This file contains what `index.js` would normally contain in a React app including `ReactDOM.render()` method. To allow Module Federation we need to import it dynamically using `import()` inside of `index.js`.
 
@@ -231,7 +231,7 @@ Shared module is not available for eager consumption
 
 ---
 
-# Step 1: Exercise 💻
+## Step 1: Exercise 💻
 
 <div class="dense">
 
@@ -247,7 +247,7 @@ In `src` folder of the provided basic React application:
 
 ---
 
-# Step 1: Exercise/2 💻
+## Step 1: Exercise/2 💻
 
 <div class="dense">
 
@@ -263,7 +263,7 @@ In `webpack.config.js` file:
 
 ---
 
-# Step 1: Solution
+## Step 1: Solution
 
 ```js
 // Nav.jsx
@@ -290,7 +290,7 @@ export default Nav;
 
 ---
 
-# Step 1: Solution /2
+## Step 1: Solution /2
 
 ```js
 // src/App.js
@@ -314,7 +314,7 @@ export default App
 
 ---
 
-# Step 1: Solution /3
+## Step 1: Solution /3
 
 ```js
 // src/bootstrap.js
@@ -332,7 +332,7 @@ import('./bootstrap')
 
 ---
 
-# Step 1: Solution /3
+## Step 1: Solution /3
 
 ```js
 // webpack.config.js
@@ -357,9 +357,9 @@ module.exports = {
 
 ---
 
-# Step 1: Trying it Out
+## Step 1: Trying it Out
 
-## From your browser visit :
+### From your browser visit :
 
 <div class="dense">
 
@@ -383,24 +383,24 @@ For the second one you should see a `script` that exposes our button element for
 
 ---
 
-# Step 1: Result
+## Step 1: Result
 
 
 <img src="/images/step-01-results-1.png" class="rounded shadow" style="height: auto; width: 600px; margin: auto;" alt="React.js remote app">
 
 ---
 
-# Step 1: Result /2
+## Step 1: Result /2
 
 <img src="/images/step-01-results-2.png" class="rounded shadow" style="height: auto; width: 600px; margin: auto;" alt="React.js remote app">
 
 ---
 
-# Step 2: Setting up the Host Application
+## Step 2: Setting up the Host Application
 
 <div class="dense">
 
-## General Steps:
+### General Steps:
 
 -- In order to start consuming modules, we need to configure the plugin's `remotes` parameter.
 
@@ -418,11 +418,11 @@ remotes: {
 
 ---
 
-# Step 2: Setting up the Host Application /2
+## Step 2: Setting up the Host Application /2
 
 <div class="dense">
 
-## Next.js specific steps:
+### Next.js specific steps:
 
 -- To enable Module Federation in Next.js we need to import `NextFederationPlugin` in `next.config.js` file since `ModuleFederationPlugin` and `webpack.config.js` are not used in Next.js apps.
 
@@ -448,11 +448,11 @@ config.plugins.push(
 
 ---
 
-# Step 2: Exercise 💻
+## Step 2: Exercise 💻
 
 <div class="dense">
 
-## Create a Next.js app and inside of it:
+### Create a Next.js app and inside of it:
 
 -- Create `components/nextjs-layout-box.js` file.
 
@@ -468,7 +468,7 @@ config.plugins.push(
 
 ---
 
-# Step 2: Solution
+## Step 2: Solution
 
 ```javascript
 // next.config.js
@@ -494,7 +494,7 @@ module.exports = {
 
 ---
 
-# Step 2: Solution /2
+## Step 2: Solution /2
 
 ```js
 // components/nextjs-layout-box.js.js
@@ -525,11 +525,11 @@ export default LayoutBox;
 
 ---
 
-# Step 2: Trying it Out
+## Step 2: Trying it Out
 
 <div class="dense">
 
-## From your browser visit :
+### From your browser visit :
 
 ```js
 http://localhost:8080
@@ -541,13 +541,13 @@ You should see the `LayoutBox` component acting as a wrapper and the remote comp
 
 ---
 
-# Step 2: Result
+## Step 2: Result
 
 <img src="/images/step-02-results.png" class="rounded shadow" style="height: auto; width: 600px; margin: auto;" alt="Next.js host app">
 
 ---
 
-# Step 3: Setting up Bi-Directional Example
+## Step 3: Setting up Bi-Directional Example
 
 <div class="dense">
 
@@ -557,7 +557,7 @@ In this step we are going to demonstrate Module Federation's bi-directional abil
 
 ---
 
-# Step 3: Exercise
+## Step 3: Exercise
 
 <div class="dense">
 
@@ -574,7 +574,7 @@ In this step we are going to demonstrate Module Federation's bi-directional abil
 
 ---
 
-# Step 3: Exercise /2
+## Step 3: Exercise /2
 
 <div class="dense">
 
@@ -591,7 +591,7 @@ In this step we are going to demonstrate Module Federation's bi-directional abil
 
 ---
 
-# Step 3: Solution
+## Step 3: Solution
 
 ```js
 // nextjs-layout-box.js
@@ -622,7 +622,7 @@ export default LayoutBox;
 
 ---
 
-# Step 3: Solution /2
+## Step 3: Solution /2
 
 ```js
 // nextjs-table.js
@@ -647,7 +647,7 @@ export default Table
 
 ---
 
-# Step 3: Solution /2
+## Step 3: Solution /2
 
 ```js
 // next.config.js
@@ -667,7 +667,7 @@ new NextFederationPlugin({
 
 ---
 
-# Step 3: Solution /3
+## Step 3: Solution /3
 
 ```js
 // Nav.jsx
@@ -694,7 +694,7 @@ export default Nav;
 
 ---
 
-# Step 3: Solution /4
+## Step 3: Solution /4
 
 ```js
 // Title.jsx
@@ -705,7 +705,7 @@ export default Title
 
 ---
 
-# Step 3: Solution /5
+## Step 3: Solution /5
 
 ```js
 // webpack.config.js
@@ -752,13 +752,13 @@ You should see the `Next.js` app wrapped in its local `LayoutBox` as well as two
 
 ---
 
-# Step 3: Result
+## Step 3: Result
 
 <img src="/images/step-03-results-1.jpg" class="rounded shadow" style="height: auto; width: 600px; margin: auto;" alt="React.js app">
 
 ---
 
-# Step 3: Result /2
+## Step 3: Result /2
 
 <img src="/images/step-03-results-2.jpg" class="rounded shadow" style="height: auto; width: 600px; margin: auto;" alt="Next.js app">
 
@@ -784,7 +784,7 @@ Please follow the guidelines from Zack Jackson (inventor & co-creator of module 
 
 ---
 
-# Shared dependencies: Shared API
+## Shared dependencies: Shared API
 
 -- **shared (object | [string])**: an object or an array containing a list of dependency names that can be shared across the federated modules;
 
@@ -796,7 +796,7 @@ Please follow the guidelines from Zack Jackson (inventor & co-creator of module 
 
 ---
 
-# Shared dependencies: Example
+## Shared dependencies: Example
 
 ```javascript
 // webpack.config.js
@@ -827,7 +827,7 @@ module.exports = {
 
 ---
 
-# Step 4: Setting up Shared Modules Example
+## Step 4: Setting up Shared Modules Example
 
 <div class="dense">
 
@@ -837,7 +837,7 @@ In this step we are going to demonstrate sharing dependencies (React and React D
 
 ---
 
-# Step 4: Exercise
+## Step 4: Exercise
 
 <div class="dense">
 
@@ -857,7 +857,7 @@ In this step we are going to demonstrate sharing dependencies (React and React D
 
 ---
 
-# Step 4: Solution
+## Step 4: Solution
 
 ```js
 // next.config.js
@@ -887,7 +887,7 @@ const packageJsonDependencies = require('./package.json').dependencies
 
 ---
 
-# Step 4: Solution /2
+## Step 4: Solution /2
 
 ```js
 // webpack.config.js
@@ -915,7 +915,7 @@ const packageJsonDependencies = require('./package.json').dependencies
 
 ---
 
-# Step 4: Result
+## Step 4: Result
 
 ![Requests of the Next.js app](/images/step-04-results1.png "Requests of the Next.js app")
 
@@ -925,7 +925,7 @@ const packageJsonDependencies = require('./package.json').dependencies
 
 ---
 
-# Federated Types
+## Federated Types
 
 <div class="dense">
 <p>
@@ -948,7 +948,7 @@ Something to keep in mind when using remote types in the host is that as a resul
 
 ---
 
-# References
+## References
 
 <div class="dense">
 
@@ -968,6 +968,6 @@ Something to keep in mind when using remote types in the host is that as a resul
 
 ---
 
-# Thanks For Having Us!
+## Thanks For Having Us!
 
-## 👏👏👏
+### 👏👏👏
