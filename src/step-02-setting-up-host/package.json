@@ -1,13 +1,14 @@
 {
-  "name": "step-02-setting-up-host",
+  "name": "nextApp",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 8080",
     "build": "next build",
-    "start": "concurrently \"cd ../step-01-setting-up-remote; npm start\" \"npm run dev\"",
+    "start": "yarn workspace reactApp start & yarn workspace nextApp dev",
     "lint": "next lint"
   },
+  "workspaces": ["../step-01-setting-up-remote", "./"],
   "dependencies": {
     "@module-federation/nextjs-mf": "7.0.2",
     "next-transpile-modules": "10.0.0",
