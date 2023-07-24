@@ -59,10 +59,9 @@ Module federation is one of the most popular approaches for implementing micro f
 
 <div class="sublist">
 
--- client-side: [SingleSPA](https://single-spa.js.org/), [Qiankun](https://qiankun.umijs.org/) (based on SingleSPA), [Luigi](https://luigi-project.io/);
+  -- client-side: [SingleSPA](https://single-spa.js.org/), [Qiankun](https://qiankun.umijs.org/) (based on SingleSPA), [Luigi](https://luigi-project.io/);
 
--- server-side: [Ara](https://ara-framework.github.io/website/), [Bit](https://bit.dev/), [Open Components](https://opencomponents.github.io/), [Piral](https://piral.io/).
-
+  -- server-side: [Ara](https://ara-framework.github.io/website/), [Bit](https://bit.dev/), [Open Components](https://opencomponents.github.io/), [Piral](https://piral.io/).
 </div>
 
 ---
@@ -76,7 +75,6 @@ Module federation is one of the most popular approaches for implementing micro f
 -- a **remote** is an module that is being consumed by the host, and it can be both shared components or common dependencies to be used by different hosts;
 
 -- a **bidirectional host** can be either a host or a remote (or both), consuming other applications or providing some code to other hosts.
-
 </div>
 
 ---
@@ -271,34 +269,25 @@ In `webpack.config.js` file:
 
 ```js
 // Nav.jsx
-import * as React from 'react'
+import * as React from 'react';
 const Nav = ({ links }) => {
   return (
     <nav
-      style={{
-        background: '#872642',
-        width: '100%',
-        color: 'white',
-        textAlign: 'center',
-        display: 'block',
+      style={{ background: "#872642", width: "100%", color: "white", textAlign: "center", display: "block"
       }}
     >
       <ul>
-        {links.map((link, i) => (
-          <li
-            key={i}
-            style={{ display: 'inline-block', padding: '10px 20px' }}
-          >
-            <a style={{ color: '#F6C026' }} href={link.url}>
-              {link.label}
-            </a>
-          </li>
-        ))}
+        { links.map((link, i) => (
+          <li key={i} style={{display: "inline-block", padding: "10px 20px" }}>
+            <a style={{color: "#F6C026"}} href={link.url}>{link.label}</a>
+          </li> )
+          )
+        }
       </ul>
     </nav>
-  )
-}
-export default Nav
+  );
+};
+export default Nav;
 ```
 
 ---
@@ -354,17 +343,17 @@ const { ModuleFederationPlugin } = require('webpack').container
 // .....
 
 module.exports = {
-  // .....
-  plugins: [
-    new ModuleFederationPlugin({
-      name: 'remote',
-      filename: 'remoteEntry.js',
-      exposes: {
-        './Nav': './src/components/Nav',
-      },
-    }),
     // .....
-  ],
+    plugins: [
+        new ModuleFederationPlugin({
+            name: 'remote',
+            filename: 'remoteEntry.js',
+            exposes: {
+                './Nav': './src/components/Nav',
+            },
+        }),
+        // .....
+    ],
 }
 ```
 
@@ -398,6 +387,7 @@ For the second one, you should see a `script` that exposes our button element fo
 
 # Step 1: Result
 
+
 <img src="/images/step-01-results-1.png" class="rounded shadow" style="height: auto; width: 600px; margin: auto;" alt="React.js remote app">
 
 ---
@@ -426,7 +416,6 @@ remotes: {
 },
 // ...
 ```
-
 </div>
 
 ---
@@ -443,19 +432,17 @@ remotes: {
 
 ```js
 // next.config.js
-const {
-  NextFederationPlugin,
-} = require('@module-federation/nextjs-mf')
+const { NextFederationPlugin } = require('@module-federation/nextjs-mf');
 // ...
 config.plugins.push(
-  new NextFederationPlugin({
-    name: 'host',
-    remotes: {
-      remote: 'remote@http://localhost:3002/remoteEntry.js',
-    },
-    filename: 'static/chunks/remoteEntry.js',
-  }),
-)
+    new NextFederationPlugin({
+        name: 'host',
+        remotes: {
+            remote: 'remote@http://localhost:3002/remoteEntry.js',
+        },
+    filename: 'static/chunks/remoteEntry.js'
+    }),
+);
 // ...
 ```
 
@@ -487,26 +474,24 @@ config.plugins.push(
 
 ```javascript
 // next.config.js
-const {
-  NextFederationPlugin,
-} = require('@module-federation/nextjs-mf')
+const { NextFederationPlugin } = require('@module-federation/nextjs-mf');
 
 module.exports = {
   webpack(config, options) {
     if (!options.isServer) {
       config.plugins.push(
-        new NextFederationPlugin({
-          name: 'host',
-          remotes: {
-            remote: 'remote@http://localhost:3002/remoteEntry.js',
-          },
-          filename: 'static/chunks/remoteEntry.js',
-        }),
-      )
+          new NextFederationPlugin({
+            name: 'host',
+            remotes: {
+              remote: 'remote@http://localhost:3002/remoteEntry.js',
+            },
+            filename: 'static/chunks/remoteEntry.js'
+          }),
+      );
     }
-    return config
+    return config;
   },
-}
+};
 ```
 
 ---
@@ -515,28 +500,29 @@ module.exports = {
 
 ```js
 // components/nextjs-layout-box.js.js
-import * as React from 'react'
+import * as React from 'react';
 
 const LayoutBox = ({ children }) => {
   return (
     <div
       style={{
-        background: 'cadetblue',
-        width: '90%',
-        height: '100vh',
-        textAlign: 'center',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 'auto',
+        background: "cadetblue",
+        width: "90%",
+        height: "100vh",
+        textAlign: "center",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "auto"
       }}
     >
-      {children}
+      { children }
     </div>
-  )
-}
+  );
+};
 
-export default LayoutBox
+export default LayoutBox;
+
 ```
 
 ---
@@ -553,7 +539,6 @@ http://localhost:8080
 ```
 
 You should see the `LayoutBox` component acting as a wrapper and the remote component displayed inside of it.
-
 </div>
 
 ---
@@ -568,7 +553,7 @@ You should see the `LayoutBox` component acting as a wrapper and the remote comp
 
 <div class="dense">
 
-In this step, we are going to demonstrate Module Federation's bi-directional ability to share modules between multiple apps that can act both as the host and the remote at the same time by putting together what we learned in the previous two steps.
+In this step we are going to demonstrate Module Federation's bi-directional ability to share modules between multiple apps that can act both as the host and the remote at the same time by putting together what we learned in the previous two steps.
 
 </div>
 
@@ -577,6 +562,7 @@ In this step, we are going to demonstrate Module Federation's bi-directional abi
 # Step 3: Exercise
 
 <div class="dense">
+
 
 -- Set up a `Next.js application` (you can use the same application from step 2) on port `8080`.
 
@@ -594,6 +580,7 @@ In this step, we are going to demonstrate Module Federation's bi-directional abi
 
 <div class="dense">
 
+
 -- Set up a `React.js application` (you can use the same application from step 1) on port `8081`.
 
 -- Create a `Nav` component that takes a `links` object as props and displays links as an unordered list in the `src/components/Nav.jsx` file.
@@ -610,28 +597,29 @@ In this step, we are going to demonstrate Module Federation's bi-directional abi
 
 ```js
 // nextjs-layout-box.js
-import * as React from 'react'
+import * as React from 'react';
 
 const LayoutBox = ({ children }) => {
   return (
     <div
       style={{
-        background: '#4C4556',
-        width: '90%',
-        height: '100vh',
-        color: 'white',
-        textAlign: 'center',
-        fontSize: '24px',
-        margin: 'auto',
-        overflow: 'hidden',
+        background: "#4C4556",
+        width: "90%",
+        height: "100vh",
+        color: "white",
+        textAlign: "center",
+        fontSize: "24px",
+        margin: "auto",
+        overflow: "hidden"
       }}
     >
-      {children}
+      { children }
     </div>
-  )
-}
+  );
+};
 
-export default LayoutBox
+export default LayoutBox;
+
 ```
 
 ---
@@ -646,26 +634,17 @@ const Table = ({ data }) => {
   return (
     <table>
       <thead>
-        <tr>
-          <th>Company</th>
-          <th>State</th>
-          <th>Country</th>
-        </tr>
+        <tr><th>Company</th><th>State</th><th>Country</th></tr>
       </thead>
       <tbody>
-        {data.map((d, i) => (
-          <tr key={d.i}>
-            <td>{d.company}</td>
-            <td>{d.state}</td>
-            <td>{d.country}</td>
-          </tr>
-        ))}
+        {data.map((d, i) => <tr key={d.i}><td>{d.company}</td><td>{d.state}</td><td>{d.country}</td></tr>)}
       </tbody>
     </table>
   )
 }
 
 export default Table
+
 ```
 
 ---
@@ -676,15 +655,15 @@ export default Table
 // next.config.js
 //...
 new NextFederationPlugin({
-  name: 'nextApp',
-  remotes: {
-    remote: 'reactApp@http://localhost:8080/remoteEntry.js',
-  },
-  exposes: {
-    './nextjs-layout-box': './components/nextjs-layout-box.js',
-    './nextjs-table': './components/nextjs-table.js',
-  },
-  // ...
+    name: 'nextApp',
+    remotes: {
+        remote: 'reactApp@http://localhost:8080/remoteEntry.js',
+    },
+    exposes: {
+        './nextjs-layout-box': './components/nextjs-layout-box.js',
+        './nextjs-table': './components/nextjs-table.js'
+    },
+// ...
 })
 ```
 
@@ -694,34 +673,25 @@ new NextFederationPlugin({
 
 ```js
 // Nav.jsx
-import * as React from 'react'
+import * as React from 'react';
 const Nav = ({ links }) => {
   return (
     <nav
-      style={{
-        background: '#872642',
-        width: '100%',
-        color: 'white',
-        textAlign: 'center',
-        display: 'block',
+      style={{ background: "#872642", width: "100%", color: "white", textAlign: "center", display: "block"
       }}
     >
       <ul>
-        {links.map((link, i) => (
-          <li
-            key={i}
-            style={{ display: 'inline-block', padding: '10px 20px' }}
-          >
-            <a style={{ color: '#F6C026' }} href={link.url}>
-              {link.label}
-            </a>
-          </li>
-        ))}
+        { links.map((link, i) => (
+          <li key={i} style={{display: "inline-block", padding: "10px 20px" }}>
+            <a style={{color: "#F6C026"}} href={link.url}>{link.label}</a>
+          </li> )
+          )
+        }
       </ul>
     </nav>
-  )
-}
-export default Nav
+  );
+};
+export default Nav;
 ```
 
 ---
@@ -730,10 +700,8 @@ export default Nav
 
 ```js
 // Title.jsx
-import * as React from 'react'
-const Title = ({ title }) => (
-  <h1 style={{ fontSize: '30px', paddingTop: '10px' }}>{title}</h1>
-)
+import * as React from 'react';
+const Title = ({title}) => <h1 style={{fontSize: "30px", paddingTop: "10px"}}>{title}</h1>;
 export default Title
 ```
 
@@ -835,8 +803,8 @@ Please follow the guidelines from Zack Jackson (inventor & co-creator of module 
 ```javascript
 // webpack.config.js
 
-const path = require('path')
-const { ModuleFederationPlugin } = require('webpack').container
+const path = require('path');
+const { ModuleFederationPlugin } = require('webpack').container;
 const packageJsonDependencies = require('./package.json').dependencies
 
 module.exports = {
@@ -851,18 +819,12 @@ module.exports = {
       filename: 'remoteEntry.js',
       exposes: { './Button': './src/components/Button' },
       shared: {
-        react: {
-          singleton: true,
-          requiredVersion: packageJsonDependencies.react,
-        },
-        'react-dom': {
-          singleton: true,
-          requiredVersion: packageJsonDependencies['react-dom'],
-        },
+        react: { singleton: true, requiredVersion: packageJsonDependencies.react },
+        'react-dom': { singleton: true, requiredVersion: packageJsonDependencies['react-dom'] },
       },
     }),
   ],
-}
+};
 ```
 
 ---
@@ -904,22 +866,24 @@ In this step, we are going to demonstrate sharing dependencies (React and React 
 const packageJsonDependencies = require('./package.json').dependencies
 
 // ...
-new NextFederationPlugin({
-  // ...
-  shared: {
-    react: {
-      requiredVersion: packageJsonDependencies.react,
-      singleton: true,
-    },
-    'react-dom': {
-      requiredVersion: packageJsonDependencies['react-dom'],
-      singleton: true,
-    },
-  },
-  extraOptions: {
-    skipSharingNextInternals: true,
-  },
-})
+    new NextFederationPlugin({
+// ...
+      shared: {
+        react: {
+          requiredVersion:
+            packageJsonDependencies.react,
+          singleton: true,
+        },
+        'react-dom': {
+          requiredVersion:
+            packageJsonDependencies['react-dom'],
+          singleton: true,
+        },
+      },
+      extraOptions: {
+        skipSharingNextInternals: true,
+      }
+    })
 // ...
 ```
 
@@ -955,11 +919,11 @@ const packageJsonDependencies = require('./package.json').dependencies
 
 # Step 4: Result
 
-![Requests of the Next.js app](/images/step-04-results1.png 'Requests of the Next.js app')
+![Requests of the Next.js app](/images/step-04-results1.png "Requests of the Next.js app")
 
-![Requests of the React app](/images/step-04-results2.png 'Requests of the React app')
+![Requests of the React app](/images/step-04-results2.png "Requests of the React app")
 
-![Version mismatch warning](/images/step-04-results3.png 'Version mismatch warning')
+![Version mismatch warning](/images/step-04-results3.png "Version mismatch warning")
 
 ---
 
