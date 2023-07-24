@@ -938,19 +938,18 @@ const packageJsonDependencies = require('./package.json').dependencies
 
 <div class="dense">
 <p>
-When it comes to TypeScript applications, the most common problem with using external libraries (which can be federated remote modules) is that not all of them provide TypeScript types with the original code. In the context of module federation, this problem is aggravated by the fact that Webpack only loads resources from the federated module at runtime, TypeScript, however, needs those during compilation. Long story short, there’s no obvious way to publish and fetch the compile-time types.</p>
-<p>If you are facing this problem, you have the following options:</p>
-
--- referencing types across monorepo (if possible);
-
--- packaging your types for distribution via a package registry (e.g., npm);
+When it comes to TypeScript applications, the most common problem with using external libraries (which can be federated remote modules) is that not all of them provide TypeScript types with the original code. In the context of module federation, this problem is aggravated by the fact that Webpack only loads resources from the federated module at runtime, TypeScript, however, needs those during compilation. In this case you have the following options:</p>
 
 -- @module-federation/typescript,
 
 -- @module-federation/native-federation-typescript.
 
+-- packaging your types for distribution via a package registry (e.g., npm);
+
+-- referencing types across monorepo (if possible).
+
 <p>
-Something to keep in mind when using remote types in the host is that, as a result, the host can become dependent on them. This means that each time the remote changes its types, it can potentially break the host.
+Note that TypeScript plugins are the easiest way to handle federated types. They fetch the types at compile-time and store within the project in order to make them available to tsc whenever it’s needed.
 </p>
 
 </div>
@@ -961,17 +960,15 @@ Something to keep in mind when using remote types in the host is that, as a resu
 
 <div class="dense">
 
--- The Micro Frontend Architecture Workshop https://github.com/nearform/the-micro-frontends-workshop
+-- [React Micro Frontends with Module Federation](https://www.nearform.com/blog/react-micro-frontends-module-federation/)
 
--- React Micro Frontends with Module Federation https://www.nearform.com/blog/react-micro-frontends-module-federation/
+-- [Micro Frontends by Cam Jackson](https://martinfowler.com/articles/micro-frontends.html)
 
--- Micro Frontends by Cam Jackson https://martinfowler.com/articles/micro-frontends.html
+-- [@module-federation/typescript](https://github.com/module-federation/typescript)
 
--- @module-federation/typescript https://github.com/module-federation/typescript
+-- [Bundler-Agnostic Plugins to Share Federated Components for Testing Purposes](https://github.com/module-federation/universe/tree/main/packages/native-federation-tests) by NearForm
 
--- Bundler-Agnostic Plugins to Share Federated Components for Testing Purposes https://github.com/module-federation/universe/tree/main/packages/native-federation-tests by NearForm
-
--- Bundler-Agnostic Plugins to Share Federated Types https://github.com/module-federation/universe/tree/main/packages/native-federation-typescript by NearForm
+-- [Bundler-Agnostic Plugins to Share Federated Types](https://github.com/module-federation/universe/tree/main/packages/native-federation-typescript) by NearForm
 
 </div>
 
