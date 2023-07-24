@@ -245,9 +245,7 @@ Shared module is not available for eager consumption
 
 In `src` folder of the provided basic React application:
 
--- find a `Nav` component that takes the `links` object as props and displays them as an unordered list in the `src/components/Nav.jsx` file;
-
--- import, dispaly and pass some link as props to that component inside the `App.js` file and under the title; the links props is an array of objects like this: 
+-- import the `Nav` component from `src/components` folder, dispaly it inside the `App.js` file under the title and pass some links as props to it; the links props should be an array of objects like this: 
 ```js
   const links = [
     { url: "/", label: "Home Page" },
