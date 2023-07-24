@@ -245,9 +245,9 @@ Shared module is not available for eager consumption
 
 In `src` folder of the provided basic React application:
 
--- Create a `Nav` component that takes the `links` object as props and displays links as an unordered list in the `src/components/Nav.jsx` file.
+-- find a `Nav` component that takes the `links` object as props and displays them as an unordered list in the `src/components/Nav.jsx` file;
 
--- render that element inside `App.js`;
+-- import, dispaly and pass some props that component inside the `App.js` file and under the title;
 
 -- render the entire application via the `createRoot()` method inside the `bootstrap.js ` file and import that file in the `index.js` file using the `import` statement.
 
@@ -274,33 +274,6 @@ In `webpack.config.js` file:
 ## Step 1: Solution
 
 ```js
-// Nav.jsx
-import * as React from 'react';
-const Nav = ({ links }) => {
-  return (
-    <nav
-      style={{ background: "#872642", width: "100%", color: "white", textAlign: "center", display: "block"
-      }}
-    >
-      <ul>
-        { links.map((link, i) => (
-          <li key={i} style={{display: "inline-block", padding: "10px 20px" }}>
-            <a style={{color: "#F6C026"}} href={link.url}>{link.label}</a>
-          </li> )
-          )
-        }
-      </ul>
-    </nav>
-  );
-};
-export default Nav;
-```
-
----
-
-## Step 1: Solution /2
-
-```js
 // src/App.js
 import React from 'react'
 import Nav from './components/Nav'
@@ -322,7 +295,7 @@ export default App
 
 ---
 
-## Step 1: Solution /3
+## Step 1: Solution /2
 
 ```js
 // src/bootstrap.js
