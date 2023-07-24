@@ -157,6 +157,8 @@ yarn run start
 
 -- In this example, we are going to demonstrate these steps in a basic React app since any Webpack based application that supports MF will have a similar flow for enabling this feature.
 
+-- This aplication on its own will work just as any other React application but it will have the ability to expose a specific part of it as a remote which we will be able to consume inside of another application in later steps of the workshop.
+
 </div>
 
 ---
@@ -183,7 +185,7 @@ plugins: [
     new ModuleFederationPlugin({
       name: 'remoteAppName',
       filename: 'remoteEntry.js',
-      exposes: { './Nav': './src/components/Nav' }
+      exposes: { './ComponentName': './src/components/ComponentName' }
     }),
   ],
 ```
@@ -200,7 +202,8 @@ plugins: [
 
 -- `filename` can be any value, and it will be an entry point for exposed/shared modules. `remoteEntry.js` is most commonly/conventionally used for this purpose;
 
--- in the `exposes` object, we define components for remote consumption. The key name should always be in form of `./ComponentName` and the value should be its relative path to the Webpack config file.
+-- in the `exposes` object we define components for remote consumption. The key name should always be in form of `./ComponentName` in any application that relies on Webpack's ModuleFederationPlugin and the value should be the component's relative path to the webpack.config.js.
+
 
 </div>
 
@@ -212,12 +215,13 @@ plugins: [
 
 ### Adding an extra layer of indirection to the entire app
 
-We need `index.js` to be the app's entrypoint but inside of it we need to import another file, `bootstrap.js` (named this way by convention), that renders the entire app. This file contains what `index.js` would normally contain in a React app, including the `ReactDOM.render()` method. To allow Module Federation we need to import it dynamically using `import()` inside of `index.js`.
+We need `index.js` to be the app's entry point but inside of it we need to import another file, `bootstrap.js` (named this way by convention) that renders the entire app. This file contains what `index.js` would normally contain in a React app including `createRoot()` method. To allow Module Federation we need to import it dynamically using `import()` inside of `index.js`.
 
 ```js
 //src/bootstrap.js
 // ... React Code
-ReactDOM.render(<App />, document.getElementById('root'))
+const root = createRoot(document.getElementById('root'));
+root.render(<App />);
 ```
 
 ```js
@@ -225,7 +229,7 @@ ReactDOM.render(<App />, document.getElementById('root'))
 import('bootstrap.js')
 ```
 
-Without this extra layer of indirection, Webpack would throw the following error when trying to consume the remote module:
+Without this extra layer of indirection Webpack would throw the following error:
 
 ```js
 Shared module is not available for eager consumption
@@ -241,11 +245,15 @@ Shared module is not available for eager consumption
 
 In `src` folder of the provided basic React application:
 
--- Create a `Nav` component that takes the `links` object as props and displays links as an unordered list in the `src/components/Nav.jsx` file.
+-- import the `Nav` component from `src/components` folder, dispaly it inside the `App.js` file under the title and pass some links as props to it; the links props should be an array of objects like this: 
+```js
+  const links = [
+    { url: "/", label: "Home Page" },
+    { url: "https://example.com", label: "Example Page" }
+  ]
+```
 
--- render that element inside `App.js`;
-
--- render the entire application via the `ReactDOM.render()` method inside the `bootstrap.js ` file and import that file in the `index.js` file using the `import` statement.
+-- render the entire application via the `createRoot()` method inside the `bootstrap.js ` file and import that file in the `index.js` file using the `import` statement.
 
 </div>
 
@@ -270,33 +278,6 @@ In `webpack.config.js` file:
 ## Step 1: Solution
 
 ```js
-// Nav.jsx
-import * as React from 'react';
-const Nav = ({ links }) => {
-  return (
-    <nav
-      style={{ background: "#872642", width: "100%", color: "white", textAlign: "center", display: "block"
-      }}
-    >
-      <ul>
-        { links.map((link, i) => (
-          <li key={i} style={{display: "inline-block", padding: "10px 20px" }}>
-            <a style={{color: "#F6C026"}} href={link.url}>{link.label}</a>
-          </li> )
-          )
-        }
-      </ul>
-    </nav>
-  );
-};
-export default Nav;
-```
-
----
-
-## Step 1: Solution /2
-
-```js
 // src/App.js
 import React from 'react'
 import Nav from './components/Nav'
@@ -318,15 +299,17 @@ export default App
 
 ---
 
-## Step 1: Solution /3
+## Step 1: Solution /2
 
 ```js
 // src/bootstrap.js
-import App from './App'
-import React from 'react'
-import ReactDOM from 'react-dom'
+import App from './App';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const root = createRoot(document.getElementById('root'));
+root.render(<App />);
+
 ```
 
 ```js
