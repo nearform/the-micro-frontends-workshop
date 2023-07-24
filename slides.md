@@ -153,9 +153,11 @@ yarn run start
 
 <div class="dense">
 
--- there are a few key steps that need to be made in order to expose a module for remote consumption (federation);
+-- There are a few key steps that need to be made in order to expose a module for remote consumption (federation);
 
--- in this example we are going to demonstrate these steps in a basic React app since any Webpack based application that supports MF will have the similar flow for enabling this feature.
+-- In this example we are going to demonstrate these steps in a basic React app since any Webpack based application that supports MF will have the similar flow for enabling this feature.
+
+-- This aplication on its own will work just as any other React application but it will have the ability to expose a specific part of it as a remote which we will be able to consume inside of another application in later steps of the workshop.
 
 </div>
 
@@ -181,7 +183,7 @@ plugins: [
     new ModuleFederationPlugin({
       name: 'remoteAppName',
       filename: 'remoteEntry.js',
-      exposes: { './Nav': './src/components/Nav' }
+      exposes: { './ComponentName': './src/components/ComponentName' }
     }),
   ],
 ```
@@ -198,7 +200,7 @@ plugins: [
 
 -- `filename` can be any value and it will be an entry point for exposed/shared modules. `remoteEntry.js` is most commonly/conventionally used for this purpose;
 
--- in `exposes` object we define components for remote consumption. Key name should always be in form of `./ComponentName` and the value should be its relative path to Webpack config file.
+-- in `exposes` object we define components for remote consumption. Key name should always be in form of `./ComponentName` in any application that relies on Webpack's ModuleFederationPlugin and the value should be the component's relative path to the webpack.config.js.
 
 </div>
 
@@ -210,12 +212,13 @@ plugins: [
 
 ## Adding an extra layer of indirection to the entire app
 
-We need `index.js` to be app's entry point but inside of it we need to import another file `bootstrap.js` (named this way by convention) that renders the entire app. This file contains what `index.js` would normally contain in a React app including `ReactDOM.render()` method. To allow Module Federation we need to import it dynamically using `import()` inside of `index.js`.
+We need `index.js` to be app's entry point but inside of it we need to import another file `bootstrap.js` (named this way by convention) that renders the entire app. This file contains what `index.js` would normally contain in a React app including `createRoot()` method. To allow Module Federation we need to import it dynamically using `import()` inside of `index.js`.
 
 ```js
 //src/bootstrap.js
 // ... React Code
-ReactDOM.render(<App />, document.getElementById('root'))
+const root = createRoot(document.getElementById('root'));
+root.render(<App />);
 ```
 
 ```js
@@ -223,7 +226,7 @@ ReactDOM.render(<App />, document.getElementById('root'))
 import('bootstrap.js')
 ```
 
-Without this extra layer of indirection Webpack would throw the following error when trying to consume the remote module:
+Without this extra layer of indirection Webpack would throw the following error:
 
 ```js
 Shared module is not available for eager consumption
@@ -243,7 +246,7 @@ In `src` folder of the provided basic React application:
 
 -- render that element inside `App.js`;
 
--- render the entire application via `ReactDOM.render()` method inside of `bootstrap.js ` file and import that file in `index.js` file using the `import` statement.
+-- render the entire application via `createRoot()` method inside of `bootstrap.js ` file and import this file in `index.js` file using the `import` statement.
 
 </div>
 
@@ -257,9 +260,9 @@ In `webpack.config.js` file:
 
 -- import `ModuleFederationPlugin` plugin from Webpack's `container` object;
 
--- in exported modules instantiate `new ModuleFederationPlugin`;
+-- in plugin array/section instantiate `new ModuleFederationPlugin`;
 
--- pass a configuration object and define values for `name`, `filename` and `exposes` keys. Remember that `filename` uses a naming convention and `exposes` refers to the element that we want to expose.
+-- pass a configuration object top it and define values for `name`, `filename` and `exposes` keys. Remember that `filename` uses a naming convention and `exposes` refers to the element that we want to expose and that we have to use a very specific `./ComponentName` pattern when naming keys in this section.
 
 </div>
 
@@ -320,11 +323,13 @@ export default App
 
 ```js
 // src/bootstrap.js
-import App from './App'
-import React from 'react'
-import ReactDOM from 'react-dom'
+import App from './App';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const root = createRoot(document.getElementById('root'));
+root.render(<App />);
+
 ```
 
 ```js
