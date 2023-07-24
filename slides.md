@@ -21,7 +21,7 @@ lineNumbers: false
 
 <div class="bigger">
 
-The concept of <em>micro frontends</em> was first mentioned circa 2016 as an extrapolation of <em>microservices</em> to the frontend realm. Since then it became a goto strategy for splitting a monolithic frontend codebase into smaller pieces that can be owned, worked on and deployed independently.
+The concept of <em>micro frontends</em> was first mentioned circa 2016 as an extrapolation of <em>microservices</em> to the frontend realm. Since then, it has become a go-to strategy for splitting a monolithic frontend codebase into smaller pieces that can be owned, worked on, and deployed independently.
 
 </div>
 
@@ -31,7 +31,7 @@ The concept of <em>micro frontends</em> was first mentioned circa 2016 as an ext
 
 <div class="bigger">
 
-Module federation is one of the most popular approaches for implementing micro frontend architecture on either client or server side. With module federation, each micro frontend is treated as a standalone module that can be developed, deployed, and versioned independently, which allows those modules to share and consume each other's functionality, resources, and components, improving collaboration and reusability. Started as a Webpack Plugin, module federation has now evolved into a general concept adopted by other bundlers and frameworks.
+Module federation is one of the most popular approaches for implementing micro frontend architecture on either the client or server side. With module federation, each micro frontend is treated as a standalone module that can be developed, deployed, and versioned independently, which allows those modules to share and consume each other's functionality, resources, and components, improving collaboration and reusability. Started as a Webpack Plugin, module federation has now evolved into a general concept adopted by other bundlers and frameworks.
 
 </div>
 
@@ -53,7 +53,7 @@ Module federation is one of the most popular approaches for implementing micro f
 
 ## Other Approaches/2
 
--- **edge-side Composition**: edge-side composition assumes that micro frontends are assembled by the edge using the Edge Side Include (ESI) specification; biggest cons are the fact that support differs depending on the CDN, and each vendor (Akamai, CloudFlare, Fastly, etc.) has its own features and limitations;
+-- **edge-side Composition**: edge-side composition assumes that micro frontends are assembled by the edge using the Edge Side Include (ESI) specification; the biggest cons are the fact that support differs depending on the CDN, and each vendor (Akamai, CloudFlare, Fastly, etc.) has its own features and limitations;
 
 -- **dedicated Frameworks for MFE Composition**: one of the easiest ways to implement micro frontend architecture is to use a dedicated framework that takes care of all the ins and outs and lets you focus on the application code; some notable examples of such frameworks are listed below:
 
@@ -82,10 +82,10 @@ Module federation is one of the most popular approaches for implementing micro f
 ## Module federation with Webpack
 
 <div>
-<p>As we mentioned earlier, initially module federation was implemented as a plugin introduced in Webpack 5.
+<p>As mentioned earlier, initially, module federation was implemented as a plugin introduced in Webpack 5.
 To set up Module Federation in Webpack, you need to define the federated modules in your Webpack configuration files, specify the remote entry points and expose specific modules (aka “remotes”) that you want to share with other applications. The remote entry points represent the Webpack builds that expose modules for consumption.</p>
 
-<p>In the consuming application's (aka “host”) Webpack configuration, you define which federated modules you want to consume. You specify the remote entry points and the modules you want to import from those remotes.
+<p>In the consuming application's (aka “host”) Webpack configuration, you define which federated modules you want to consume. You specify the remote entrypoints and the modules you want to import from those remotes.
 When you build and run your applications, Webpack dynamically loads the federated modules at runtime. It fetches the remote entry points, resolves the requested modules, and injects them into the consuming application. This process allows you to share code between applications without physically bundling everything together.</p>
 
 <p>Note that as an application has multiple dependencies, a host can also have multiple remotes.</p>
@@ -119,13 +119,13 @@ cd the-micro-frontends-workshop && yarn install
 
 <div class="dense">
 
--- this workshop is made of multiple, incremental modules (aka exercises);
+-- This workshop is made up of multiple, incremental modules (aka exercises);
 
--- each module builds on top of the previous one;
+-- Each module builds on top of the previous one;
 
--- at each step you are asked to add features and solve problems;
+-- At each step, you are asked to add features and solve problems;
 
--- you will find the solution to each step in the `src/step-{n}-{name}` folder.
+-- You will find the solution to each step in the `src/step-{n}-{name}` folder.
 
 </div>
 
@@ -153,9 +153,9 @@ yarn run start
 
 <div class="dense">
 
--- there are a few key steps that need to be made in order to expose a module for remote consumption (federation);
+-- There are a few key steps that need to be taken in order to expose a module for remote consumption (federation);
 
--- in this example we are going to demonstrate these steps in a basic React app since any Webpack based application that supports MF will have the similar flow for enabling this feature.
+-- In this example, we are going to demonstrate these steps in a basic React app since any Webpack based application that supports MF will have a similar flow for enabling this feature.
 
 </div>
 
@@ -165,9 +165,11 @@ yarn run start
 
 <div class="dense">
 
-### Configuring `webpack.config.js` file
 
-In order to enable module federation we need to import `ModuleFederationPlugin` from Webpack on top of this file.
+## Configuring the `webpack.config.js` file
+
+
+In order to enable module federation, we need to import `ModuleFederationPlugin` from Webpack on top of this file.
 
 ```js
 const { ModuleFederationPlugin } = require('webpack').container
@@ -196,9 +198,9 @@ plugins: [
 
 -- `name` is where we define a name to distinguish modules. This value will be used by a consumer application when defining remotes inside of it;
 
--- `filename` can be any value and it will be an entry point for exposed/shared modules. `remoteEntry.js` is most commonly/conventionally used for this purpose;
+-- `filename` can be any value, and it will be an entry point for exposed/shared modules. `remoteEntry.js` is most commonly/conventionally used for this purpose;
 
--- in `exposes` object we define components for remote consumption. Key name should always be in form of `./ComponentName` and the value should be its relative path to Webpack config file.
+-- in the `exposes` object, we define components for remote consumption. The key name should always be in form of `./ComponentName` and the value should be its relative path to the Webpack config file.
 
 </div>
 
@@ -210,7 +212,7 @@ plugins: [
 
 ### Adding an extra layer of indirection to the entire app
 
-We need `index.js` to be app's entry point but inside of it we need to import another file `bootstrap.js` (named this way by convention) that renders the entire app. This file contains what `index.js` would normally contain in a React app including `ReactDOM.render()` method. To allow Module Federation we need to import it dynamically using `import()` inside of `index.js`.
+We need `index.js` to be the app's entrypoint but inside of it we need to import another file, `bootstrap.js` (named this way by convention), that renders the entire app. This file contains what `index.js` would normally contain in a React app, including the `ReactDOM.render()` method. To allow Module Federation we need to import it dynamically using `import()` inside of `index.js`.
 
 ```js
 //src/bootstrap.js
@@ -223,7 +225,7 @@ ReactDOM.render(<App />, document.getElementById('root'))
 import('bootstrap.js')
 ```
 
-Without this extra layer of indirection Webpack would throw the following error when trying to consume the remote module:
+Without this extra layer of indirection, Webpack would throw the following error when trying to consume the remote module:
 
 ```js
 Shared module is not available for eager consumption
@@ -239,11 +241,11 @@ Shared module is not available for eager consumption
 
 In `src` folder of the provided basic React application:
 
--- Create a `Nav` component that takes `links` object as props and displays links as an unordered list in `src/components/Nav.jsx` file.
+-- Create a `Nav` component that takes the `links` object as props and displays links as an unordered list in the `src/components/Nav.jsx` file.
 
 -- render that element inside `App.js`;
 
--- render the entire application via `ReactDOM.render()` method inside of `bootstrap.js ` file and import that file in `index.js` file using the `import` statement.
+-- render the entire application via the `ReactDOM.render()` method inside the `bootstrap.js ` file and import that file in the `index.js` file using the `import` statement.
 
 </div>
 
@@ -257,9 +259,9 @@ In `webpack.config.js` file:
 
 -- import `ModuleFederationPlugin` plugin from Webpack's `container` object;
 
--- in exported modules instantiate `new ModuleFederationPlugin`;
+-- in exported modules, instantiate `new ModuleFederationPlugin`;
 
--- pass a configuration object and define values for `name`, `filename` and `exposes` keys. Remember that `filename` uses a naming convention and `exposes` refers to the element that we want to expose.
+-- pass a configuration object and define values for `name`, `filename`, and `exposes` keys. Remember that `filename` uses a naming convention, and `exposes` refers to the element that we want to expose.
 
 </div>
 
@@ -377,9 +379,9 @@ http://localhost:3002/remoteEntry.js
 
 ```
 
-For the first one you should see a page that displays `Basic Remote Application` title with a `Remote Button`.
+For the first one, you should see a page that displays the `Basic Remote Application` title with a `Remote Button`.
 
-For the second one you should see a `script` that exposes our button element for remote consumption.
+For the second one, you should see a `script` that exposes our button element for remote consumption.
 
 </div>
 
@@ -426,7 +428,7 @@ remotes: {
 
 ### Next.js specific steps:
 
--- To enable Module Federation in Next.js we need to import `NextFederationPlugin` in `next.config.js` file since `ModuleFederationPlugin` and `webpack.config.js` are not used in Next.js apps.
+-- To enable Module Federation in Next.js we need to import `NextFederationPlugin` in the `next.config.js` file since `ModuleFederationPlugin` and `webpack.config.js` are not used in Next.js apps.
 
 -- `filename` property needs to be set using the `static/chunks/{fileName}.js` pattern.
 
@@ -454,13 +456,14 @@ config.plugins.push(
 
 <div class="dense">
 
-### Create a Next.js app and inside of it:
+
+## Create a Next.js app, and inside of it:
 
 -- Create `components/nextjs-layout-box.js` file.
 
--- Place a simple `LayoutBox` component that takes `children` props (e.g. a distinctive background) in that file.
+-- Place a simple `LayoutBox` component that takes `children` props (e.g., a distinctive background) in that file.
 
--- Configure the application as the host in `next.config.js` file.
+-- Configure the application as the host in the `next.config.js` file.
 
 -- Make sure that it also consumes the remote from Step 1 (port `3002`).
 
@@ -531,7 +534,9 @@ export default LayoutBox;
 
 <div class="dense">
 
-### From your browser visit :
+
+## From your browser, visit:
+
 
 ```js
 http://localhost:8080
@@ -549,7 +554,9 @@ You should see the `LayoutBox` component acting as a wrapper and the remote comp
 
 ---
 
-## Step 3: Setting up Bi-Directional Example
+
+# Step 3: Setting up a Bi-Directional Example
+
 
 <div class="dense">
 
@@ -566,9 +573,9 @@ In this step we are going to demonstrate Module Federation's bi-directional abil
 
 -- Set up a `Next.js application` (you can use the same application from step 2) on port `8080`.
 
--- Create a `LayoutBox` component that takes `children` in `components/nextjs-layout-box.js` file.
+-- Create a `LayoutBox` component that takes `children` in the `components/nextjs-layout-box.js` file.
 
--- Create a `Table` component that takes `data` object as props and renders an HTML table in `components/nextjs-table.js`.
+-- Create a `Table` component that takes a `data` object as props and renders an HTML table in `components/nextjs-table.js`.
 
 -- Expose both components as remotes.
 
@@ -583,9 +590,9 @@ In this step we are going to demonstrate Module Federation's bi-directional abil
 
 -- Set up a `React.js application` (you can use the same application from step 1) on port `8081`.
 
--- Create a `Nav` component that takes `links` object as props and displays links as an unordered list in `src/components/Nav.jsx` file.
+-- Create a `Nav` component that takes a `links` object as props and displays links as an unordered list in the `src/components/Nav.jsx` file.
 
--- Create a `Title` component that takes `title` string as props and returns the title as an `h1` element in `src/components/Title.jsx` file.
+-- Create a `Title` component that takes a `title` string as props and returns the title as an `h1` element in the `src/components/Title.jsx` file.
 
 -- Expose both components and configure both applications so they can consume those components from each other.
 
@@ -732,23 +739,23 @@ new ModuleFederationPlugin({
 
 <div class="dense">
 
-## From your browser visit :
+## From your browser, visit:
 
 ```js
 http://localhost:8080
 
 ```
 
-You should see the `React.js` app wrapped in `LayoutBox` consumed from `Next.js` app as well as two local components `Nav` and `Title` and another remote `Table` component.
+You should see the `React.js` app wrapped in `LayoutBox` consumed from `Next.js` app as well as the `Nav` and `Title` local components and another remote `Table` component.
 
-## From your browser visit :
+## From your browser, visit:
 
 ```js
 http://localhost:8081
 
 ```
 
-You should see the `Next.js` app wrapped in its local `LayoutBox` as well as two remote components `Nav` and `Title` and another local `Table` component.
+You should see the `Next.js` app wrapped in its local `LayoutBox` as well the two remote `Nav` and `Title` components and another local `Table` component.
 
 </div>
 
@@ -833,7 +840,7 @@ module.exports = {
 
 <div class="dense">
 
-In this step we are going to demonstrate sharing dependencies (React and React DOM) across federated modules.
+In this step, we are going to demonstrate sharing dependencies (React and React DOM) across federated modules.
 
 </div>
 
@@ -843,17 +850,17 @@ In this step we are going to demonstrate sharing dependencies (React and React D
 
 <div class="dense">
 
--- take the applications you created as part of step 3 exercises;
+-- Take the applications you created as part of step 3 exercises;
 
--- modify Webpack config of the React app to have React and React DOM as shared dependencies;
+-- Modify Webpack config of the React app to have React and React DOM as shared dependencies;
 
--- modify Next.js config of the Next.js app to have React and React DOM as shared dependencies;
+-- Modify Next.js config of the Next.js app to have React and React DOM as shared dependencies;
 
--- set the versions of these shared dependencies to be read from respective `package.json` files;
+-- Set the versions of these shared dependencies to be read from the respective `package.json` files;
 
--- make sure the dependencies are being shared as singletons;
+-- Make sure the dependencies are being shared as singletons;
 
--- try changing the version of the React and React DOM in the `package.json` file of the React app to a previous one and make sure you get a warning about version mismatch in the console.
+-- Try changing the version of React and React DOM in the `package.json` file of the React app to a previous one, and make sure you get a warning about version mismatch in the console.
 
 </div>
 
@@ -932,18 +939,18 @@ const packageJsonDependencies = require('./package.json').dependencies
 <div class="dense">
 <p>
 When it comes to TypeScript applications, the most common problem with using external libraries (which can be federated remote modules) is that not all of them provide TypeScript types with the original code. In the context of module federation, this problem is aggravated by the fact that Webpack only loads resources from the federated module at runtime, TypeScript, however, needs those during compilation. Long story short, there’s no obvious way to publish and fetch the compile-time types.</p>
-<p>If you are facing this problem, you have following options:</p>
+<p>If you are facing this problem, you have the following options:</p>
 
 -- referencing types across monorepo (if possible);
 
--- packaging your types for distribution via a package registry (e.g. npm);
+-- packaging your types for distribution via a package registry (e.g., npm);
 
 -- @module-federation/typescript,
 
 -- @module-federation/native-federation-typescript.
 
 <p>
-Something to keep in mind when using remote types in the host is that as a result the host can become dependent on them. This means that each time remote changes its types, it can potentially break the host.
+Something to keep in mind when using remote types in the host is that, as a result, the host can become dependent on them. This means that each time the remote changes its types, it can potentially break the host.
 </p>
 
 </div>
