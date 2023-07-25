@@ -1,5 +1,5 @@
 {
-  "name": "react-host-nextjs-remote_host",
+  "name": "reactApp",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -14,7 +14,6 @@
     "@babel/preset-react": "^7.16.7",
     "@emotion/react": "11.10.6",
     "babel-loader": "8.2.5",
-    "concurrently": "7.6.0",
     "css-loader": "^6.8.1",
     "file-loader": "6.2.0",
     "html-webpack-plugin": "5.5.1",

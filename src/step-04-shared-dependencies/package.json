@@ -6,6 +6,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently 'cd reactApp && npm start' 'cd nextApp && npm run dev' --kill-others"
+    "start": "yarn workspace reactApp start & yarn workspace nextApp dev"
   }
 }
