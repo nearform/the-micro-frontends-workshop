@@ -387,29 +387,57 @@ For the second one, you should see a `script` that exposes our button element fo
 
 <div class="dense">
 
-### General Steps:
+-- In this step we are going to set up an application as the host application. We are going to use a Next.js application for this purpose which will demonstrate Module Federation's ability to work with different frameworks.
 
--- In order to start consuming modules, we need to configure the plugin's `remotes` parameter.
+### General Steps: 
 
--- This parameter can take an array of different remotes.
+-- In order to start consuming modules, we need to configure the plugin's `remotes` parameter which can take multiple remotes.
+
 
 ```js
-// webpack.config.js file
-// ...
 remotes: {
-    remote: 'remote@http://localhost:3002/remoteEntry.js',
+    remoteApp1: 'someRemoteApp@http://localhost:3002/remoteEntry.js',
+    remoteApp2: 'anotherRemoteApp@http://localhost:3003/remoteEntry.js',
 },
-// ...
 ```
+
+-- The key names are going to be used later in the host application code when importing remote modules.
+
+-- The value's prefix (the string before `@http...`) must match remote application's `name` parameter defined when instantiating its Module Federation plugin (slide 13 in our workshop)
 </div>
 
 ---
 
 ## Step 2: Setting up the Host Application /2
 
+
 <div class="dense">
 
+-- In order to import/consume a module into a plain webpack host applications such as any React.js based app, we need to use the import keyword (dynamic import) and refer to the remote component based on the `key` name from one of the prevoius steps where we set up remotes in the config file. We used `someRemoteApp` and `anotherRemoteApp` in our example.
+
+-- Our example import statement could look something like this:
+
+```js
+import SomeRemoteComponent from "someRemoteApp/SomeRemoteComponent"
+```
+
 ### Next.js specific steps:
+
+-- In Next.js apps in CSR (client side rendering) scenario we have to rely on `dynamic()` method to dynamically import a remote component.
+
+```js
+import dynamic from 'next/dynamic'
+
+const SomeRemoteComponent = dynamic(() => import('someRemoteApp/SomeRemoteComponen'), { ssr: false })
+```
+
+</div>
+
+--- 
+
+## Step 2: Setting up the Host Application /3
+
+<div class="dense">
 
 -- To enable Module Federation in Next.js we need to import `NextFederationPlugin` in the `next.config.js` file since `ModuleFederationPlugin` and `webpack.config.js` are not used in Next.js apps.
 
@@ -432,6 +460,7 @@ config.plugins.push(
 ```
 
 </div>
+
 
 ---
 
