@@ -423,7 +423,7 @@ import SomeRemoteComponent from "someRemoteApp/SomeRemoteComponent"
 
 ### Next.js specific steps:
 
--- In Next.js apps in CSR (client side rendering) scenario we have to rely on `dynamic()` method to dynamically import a remote component.
+-- In Next.js apps in CSR (client side rendering) scenario we have to rely on `dynamic()` method to dynamically import the remote component. We also need to set `ssr` to `false` because we will not be using server side rendering in our example.
 
 ```js
 import dynamic from 'next/dynamic'
@@ -471,15 +471,13 @@ config.plugins.push(
 
 ## Create a Next.js app, and inside of it:
 
--- Create `components/nextjs-layout-box.js` file.
+-- Inside `nextApp/pages/index.js` file import a simple `LayoutBox` component from `nextApp/components/nextjs-layout-box.js` file. Notice that it takes `children` props.
 
--- Place a simple `LayoutBox` component that takes `children` props (e.g., a distinctive background) in that file.
+-- Display the `LayoutBox` component below the `<Head>` section, place the remote component `Nav` inside of it and pass links props to it similar to Step 1.
 
--- Configure the application as the host in the `next.config.js` file.
+-- Configure the application inside `next.config.js` file so it uses `NextFederationPlugin`.
 
--- Make sure that it also consumes the remote from Step 1 (port `3002`).
-
--- Render the `LayoutBox` component and display the remote component inside of it.
+-- We added a `reactApp` in this step and exposed the `Nav` component (similar to step 1). Configure `nextApp` so it consumes that component from port `8080`.
 
 </div>
 
@@ -489,24 +487,23 @@ config.plugins.push(
 
 ```javascript
 // next.config.js
-const { NextFederationPlugin } = require('@module-federation/nextjs-mf');
-
+const NextFederationPlugin = require('@module-federation/nextjs-mf');
 module.exports = {
-  webpack(config, options) {
-    if (!options.isServer) {
+  webpack(config) {    
       config.plugins.push(
-          new NextFederationPlugin({
-            name: 'host',
-            remotes: {
-              remote: 'remote@http://localhost:3002/remoteEntry.js',
-            },
-            filename: 'static/chunks/remoteEntry.js'
-          }),
-      );
-    }
-    return config;
+        new NextFederationPlugin({
+          name: 'nextApp',
+          remotes: {
+            remote: 'reactApp@http://localhost:8080/remoteEntry.js',
+          },
+          filename: 'static/chunks/remoteEntry.js'
+        })
+      )
+    return config
   },
-};
+  // your original next.config.js export
+  reactStrictMode: true,
+}
 ```
 
 ---
@@ -514,29 +511,29 @@ module.exports = {
 ## Step 2: Solution /2
 
 ```js
-// components/nextjs-layout-box.js.js
-import * as React from 'react';
+//pages/index.js
+import dynamic from 'next/dynamic'
+import LayoutBox from '../components/nextjs-layout-box'
 
-const LayoutBox = ({ children }) => {
+const Nav = dynamic(() => import('remote/Nav'), { ssr: false })
+
+const links = [
+  { url: '/', label: 'Home' },
+  { url: 'https://nextjs.org/', label: 'Learn more about Next.js' },
+]
+export default function Home() {
   return (
-    <div
-      style={{
-        background: "cadetblue",
-        width: "90%",
-        height: "100vh",
-        textAlign: "center",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        margin: "auto"
-      }}
-    >
-      { children }
+    <div className={styles.container}>
+      <Head>
+        {/* Head example code */}
+      </Head>
+      <LayoutBox>              
+        <Nav links={links} />       
+      </LayoutBox>
     </div>
-  );
-};
+  )
+}
 
-export default LayoutBox;
 
 ```
 
@@ -546,8 +543,17 @@ export default LayoutBox;
 
 <div class="dense">
 
+### From your browser, visit:
 
-## From your browser, visit:
+In your terminal from the `src/step-02-setting-up-host` folder run: 
+
+```bash
+yarn && yarn start
+```
+
+This will start both remote and host applications at the same time on ports 8081 and 8080 respectively!
+
+### From your browser, visit:
 
 
 ```js
@@ -555,7 +561,8 @@ http://localhost:8080
 
 ```
 
-You should see the `LayoutBox` component acting as a wrapper and the remote component displayed inside of it.
+You should see the `LayoutBox` component acting as a wrapper and the remote `Nav` component displayed inside of it (see the screenshot on the next page).
+
 </div>
 
 ---
@@ -566,9 +573,7 @@ You should see the `LayoutBox` component acting as a wrapper and the remote comp
 
 ---
 
-
 # Step 3: Setting up a Bi-Directional Example
-
 
 <div class="dense">
 
