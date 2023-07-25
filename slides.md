@@ -66,7 +66,7 @@ Module federation is one of the most popular approaches for implementing micro f
 
 ---
 
-## Glossary
+## Module Federation Glossary
 
 <div class="dense">
 
@@ -140,7 +140,7 @@ cd the-micro-frontends-workshop && yarn install
 ### Example
 
 ```bash
-cd src/step-03-bi-directional
+cd src/step-01-setting-up-remote
 
 yarn install
 
@@ -198,6 +198,14 @@ plugins: [
 
 <div class="dense">
 
+```js
+// ...
+      name: 'remoteAppName',
+      filename: 'remoteEntry.js',
+      exposes: { './ComponentName': './src/components/ComponentName' }
+// ...
+```
+
 -- `name` is where we define a name to distinguish modules. This value will be used by a consumer application when defining remotes inside of it;
 
 -- `filename` can be any value, and it will be an entry point for exposed/shared modules. `remoteEntry.js` is most commonly/conventionally used for this purpose;
@@ -245,7 +253,7 @@ Shared module is not available for eager consumption
 
 In `src` folder of the provided basic React application:
 
--- import the `Nav` component from `src/components` folder, dispaly it inside the `App.js` file under the title and pass some links as props to it; the links props should be an array of objects like this: 
+-- import the `Nav` component from `src/components` folder, dispaly it inside the `App.js` file under the title and pass some links as props to it; the links props should be an array of objects like this:
 ```js
   const links = [
     { url: "/", label: "Home Page" },
@@ -412,6 +420,8 @@ remotes: {
 ### Next.js specific steps:
 
 -- To enable Module Federation in Next.js we need to import `NextFederationPlugin` in the `next.config.js` file since `ModuleFederationPlugin` and `webpack.config.js` are not used in Next.js apps.
+
+-- Note that `NextFederationPlugin` has to be installed separately with `yarn add @module-federation/nextjs-mf`.
 
 -- `filename` property needs to be set using the `static/chunks/{fileName}.js` pattern.
 
