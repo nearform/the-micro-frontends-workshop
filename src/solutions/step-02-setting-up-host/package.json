@@ -1,0 +1,23 @@
+{
+  "name": "nextApp",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 8080",
+    "build": "next build",
+    "start": "yarn workspace reactApp start & yarn workspace nextApp dev",
+    "lint": "next lint"
+  },
+  "workspaces": ["../step-01-setting-up-remote", "./"],
+  "dependencies": {
+    "@module-federation/nextjs-mf": "7.0.2",
+    "next-transpile-modules": "10.0.0",
+    "next": "13.4.9",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "eslint": "8.45.0",
+    "eslint-config-next": "13.4.9"
+  }
+}
