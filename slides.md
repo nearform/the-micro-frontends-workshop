@@ -656,11 +656,11 @@ new ModuleFederationPlugin({
 
 ---
 
-# Step 3: Trying it Out
+## Step 3: Trying it Out
 
 <div class="dense">
 
-## From your browser, visit:
+-- From your browser, visit:
 
 ```js
 http://localhost:8080
@@ -669,7 +669,7 @@ http://localhost:8080
 
 You should see the `React.js` app wrapped in `LayoutBox` consumed from `Next.js` app as well as the `Nav` and `Title` local components and another remote `Table` component.
 
-## From your browser, visit:
+-- From your browser, visit:
 
 ```js
 http://localhost:8081
