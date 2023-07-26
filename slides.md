@@ -550,7 +550,7 @@ In your terminal from the `src/step-02-setting-up-host` folder run:
 yarn && yarn start
 ```
 
-This will start both remote and host applications at the same time on ports 8081 and 8080 respectively!
+This will start both remote and host applications at the same time on ports 8081 and 8080 respectively.
 
 ### From your browser, visit:
 
