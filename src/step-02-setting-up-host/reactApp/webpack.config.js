@@ -45,12 +45,7 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'reactApp',
-      filename: 'remoteEntry.js',
-      exposes: {
-        './Nav': './src/components/Nav'
-      },
-      shared: {},
+    // Put your configuration here
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
