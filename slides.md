@@ -573,7 +573,7 @@ You should see the `LayoutBox` component acting as a wrapper and the remote `Nav
 
 ---
 
-# Step 3: Setting up a Bi-Directional Example
+## Step 3: Setting up a Bi-Directional Example
 
 <div class="dense">
 
@@ -587,14 +587,17 @@ In this step we are going to demonstrate Module Federation's bi-directional abil
 
 <div class="dense">
 
+-- Inside of `Next.js` application find `LayoutBox` component in `nextApp/components/nextjs-layout-box.js` file as well as `Table` component in `nextApp/components/nextjs-table.js`.
 
--- Set up a `Next.js application` (you can use the same application from step 2) on port `8080`.
+-- Expose them as remotes in `next.config.js` file using the same syntax/pattern as in Step 1.
 
--- Create a `LayoutBox` component that takes `children` in the `components/nextjs-layout-box.js` file.
+-- Similary, inside of `React.js` find the `Nav` component in `src/components/Nav.jsx` as well as `Title` component in `src/components/Title.jsx` file.
 
--- Create a `Table` component that takes a `data` object as props and renders an HTML table in `components/nextjs-table.js`.
+-- Expose both components as remotes inside of `webpack.config.js` file using the same syntax/pattern as in Step 1.
 
--- Expose both components as remotes.
+-- Import the `LayoutBox` and the `Table` component into `React.js` app by configuring `webpack.config.js` file using the same syntax from step 2. 
+
+-- Import the `Nav` and the `Title` component into `Next.js` app by configuring `next.config.js` file using the same syntax from step 2.
 
 </div>
 
@@ -604,76 +607,15 @@ In this step we are going to demonstrate Module Federation's bi-directional abil
 
 <div class="dense">
 
+-- Import and place the `LayoutBox` and the `Table` component in React app's `src/App.jsx` file. Make sure that the entire content is wrapped in `LayoutBox`. Note that `Table` takes `data` prop so feel free to pass some data that will be unique for this application.
 
--- Set up a `React.js application` (you can use the same application from step 1) on port `8081`.
-
--- Create a `Nav` component that takes a `links` object as props and displays links as an unordered list in the `src/components/Nav.jsx` file.
-
--- Create a `Title` component that takes a `title` string as props and returns the title as an `h1` element in the `src/components/Title.jsx` file.
-
--- Expose both components and configure both applications so they can consume those components from each other.
+-- Import and place `Nav` and the `Title` component in Next app's `pages/index.js` file. Pass some `links` and `title` props to these components that will be unique for this application.
 
 </div>
 
 ---
 
 ## Step 3: Solution
-
-```js
-// nextjs-layout-box.js
-import * as React from 'react';
-
-const LayoutBox = ({ children }) => {
-  return (
-    <div
-      style={{
-        background: "#4C4556",
-        width: "90%",
-        height: "100vh",
-        color: "white",
-        textAlign: "center",
-        fontSize: "24px",
-        margin: "auto",
-        overflow: "hidden"
-      }}
-    >
-      { children }
-    </div>
-  );
-};
-
-export default LayoutBox;
-
-```
-
----
-
-## Step 3: Solution /2
-
-```js
-// nextjs-table.js
-import * as React from 'react'
-
-const Table = ({ data }) => {
-  return (
-    <table>
-      <thead>
-        <tr><th>Company</th><th>State</th><th>Country</th></tr>
-      </thead>
-      <tbody>
-        {data.map((d, i) => <tr key={d.i}><td>{d.company}</td><td>{d.state}</td><td>{d.country}</td></tr>)}
-      </tbody>
-    </table>
-  )
-}
-
-export default Table
-
-```
-
----
-
-## Step 3: Solution /2
 
 ```js
 // next.config.js
@@ -693,45 +635,7 @@ new NextFederationPlugin({
 
 ---
 
-## Step 3: Solution /3
-
-```js
-// Nav.jsx
-import * as React from 'react';
-const Nav = ({ links }) => {
-  return (
-    <nav
-      style={{ background: "#872642", width: "100%", color: "white", textAlign: "center", display: "block"
-      }}
-    >
-      <ul>
-        { links.map((link, i) => (
-          <li key={i} style={{display: "inline-block", padding: "10px 20px" }}>
-            <a style={{color: "#F6C026"}} href={link.url}>{link.label}</a>
-          </li> )
-          )
-        }
-      </ul>
-    </nav>
-  );
-};
-export default Nav;
-```
-
----
-
-## Step 3: Solution /4
-
-```js
-// Title.jsx
-import * as React from 'react';
-const Title = ({title}) => <h1 style={{fontSize: "30px", paddingTop: "10px"}}>{title}</h1>;
-export default Title
-```
-
----
-
-## Step 3: Solution /5
+## Step 3: Solution /2
 
 ```js
 // webpack.config.js
