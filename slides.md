@@ -560,7 +560,7 @@ http://localhost:8080
 
 ```
 
-You should see the `LayoutBox` component acting as a wrapper and the remote `Nav` component displayed inside of it (see the screenshot on the next page).
+You should see the `LayoutBox` component acting as a wrapper and the remote `Nav` component displayed inside of it (see the screenshot on the next slide).
 
 </div>
 
