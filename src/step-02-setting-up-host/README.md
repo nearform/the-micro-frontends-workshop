@@ -1,6 +1,6 @@
 # Basic One-Way Example
 
-This example demos a bi-directional configuration and module sharing between a React.js and a Next.js app.
+This example demos a basic host Next.js application on port `8080` which imports `Button` component from React.js application on port `3002`.
 
 # Running Demo
 
