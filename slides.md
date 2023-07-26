@@ -403,7 +403,7 @@ remotes: {
 
 -- The key names are going to be used later in the host application code when importing remote modules.
 
--- The value's prefix (the string before `@http...`) must match remote application's `name` parameter defined when instantiating its Module Federation plugin (slide 13 in our workshop)
+-- The value's prefix (the string before `@http...`) must match remote application's `name` parameter defined when instantiating its Module Federation plugin (see slide 13).
 </div>
 
 ---
