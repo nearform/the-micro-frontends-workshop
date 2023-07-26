@@ -1,8 +1,7 @@
-const NextFederationPlugin = require('@module-federation/nextjs-mf/lib/NextFederationPlugin')
+const NextFederationPlugin = require('@module-federation/nextjs-mf');
 
 module.exports = {
-  webpack(config, options) {
-    if (!options.isServer) {
+  webpack(config) {
       config.plugins.push(
         new NextFederationPlugin({
           name: 'nextApp',
@@ -15,18 +14,11 @@ module.exports = {
               './components/nextjs-layout-box.js',
             './nextjs-table': './components/nextjs-table.js',
           },
-          shared: {
-            react: {
-              requiredVersion: false,
-              singleton: true,
-            },
-          },
           extraOptions: {
             skipSharingNextInternals: true,
           },
         })
       )
-    }
     return config
   },
   // your original next.config.js export

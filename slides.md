@@ -656,6 +656,66 @@ new ModuleFederationPlugin({
 
 ---
 
+## Step 3: Solution /3
+
+```js
+// index.js
+...
+...
+import dynamic from 'next/dynamic'
+import LayoutBox from '../components/nextjs-layout-box'
+import Table from '../components/nextjs-table'
+const Nav = dynamic(() => import('remote/Nav'), { ssr: false })
+const Title = dynamic(() => import('remote/Title'), { ssr: false })
+
+export default function Home() {
+  return (
+    <div className={styles.container}>
+      <Head>
+        {/* Head example code */}
+      </Head>
+
+      <LayoutBox>
+        <Title title="This is Next.js App Hosted at localhost:8081" />
+        <Nav links={links} />
+        <Image width="200" src={Logo} alt="logo" />
+        <Table data={tableData} />
+      </LayoutBox>
+    </div>
+  )
+}
+
+```
+
+---
+
+## Step 3: Solution /4
+
+```js
+// App.jsx
+import LayoutBox from 'remote/nextjs-layout-box'
+import Table from 'remote/nextjs-table'
+...
+...
+
+function App() {
+  return (
+    <LayoutBox>
+      <Title title="This is React.js App hosted at localhost:8080" />
+      <Nav links={links} />
+      <img style={{maxWidth: "200px", margin: "50px auto"}} src={Logo} alt="logo" />
+      <Table data={tableData} />
+    </LayoutBox>
+  )
+}
+
+export default App
+
+
+```
+
+---
+
 ## Step 3: Trying it Out
 
 <div class="dense">
