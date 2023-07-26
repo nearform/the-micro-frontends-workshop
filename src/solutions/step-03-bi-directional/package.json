@@ -1,0 +1,11 @@
+{
+  "name": "bi-directional",
+  "private": true,
+  "workspaces": ["./reactApp", "./nextApp"],
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "yarn workspace reactApp start & yarn workspace nextApp dev"
+  }
+}
