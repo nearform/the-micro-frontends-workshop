@@ -542,7 +542,6 @@ export default function Home() {
 
 <div class="dense">
 
-### From your browser, visit:
 
 In your terminal from the `src/step-02-setting-up-host` folder run: 
 
