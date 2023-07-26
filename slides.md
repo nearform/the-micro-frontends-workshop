@@ -410,7 +410,6 @@ remotes: {
 
 ## Step 2: Setting up the Host Application /2
 
-
 <div class="dense">
 
 -- In order to import/consume a module into a plain webpack host applications such as any React.js based app, we need to use the import keyword (dynamic import) and refer to the remote component based on the `key` name from one of the prevoius steps where we set up remotes in the config file. We used `someRemoteApp` and `anotherRemoteApp` in our example.
