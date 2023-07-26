@@ -4,7 +4,10 @@ This example demos a basic host Next.js application on port `8080` which imports
 
 # Running Demo
 
-From `src/step-02-setting-up-host` folder run `yarn start` to concurrently start the host and the remote app (from step 1).
+Make sure that you have installed all dependencies by running `yarn install` from the **root folder of the workshop**!
+
+From `src/step-02-setting-up-remote` folder run `yarn && yarn start`. This will build and start both React.js and Next.js app on ports `8080` and `8081` respectively.
 
 http://localhost:8080
-http://localhost:3002
+http://localhost:8081
+
