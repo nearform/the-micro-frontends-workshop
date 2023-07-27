@@ -31,7 +31,9 @@ The concept of <em>micro frontends</em> was first mentioned circa 2016 as an ext
 
 <div class="bigger">
 
-Module federation is one of the most popular approaches for implementing micro frontend architecture on either the client or server side. With module federation, each micro frontend is treated as a standalone module that can be developed, deployed, and versioned independently, which allows those modules to share and consume each other's functionality, resources, and components, improving collaboration and reusability. Started as a Webpack Plugin, module federation has now evolved into a general concept adopted by other bundlers and frameworks.
+Module federation is one of the most popular approaches for implementing micro frontend architecture on either the client or server side. With module federation, each micro frontend is treated as a standalone module that can be developed, deployed, and versioned independently, which allows those modules to share and consume each other's functionality, resources, and components at runtime, improving collaboration and reusability.
+
+Started as a Webpack Plugin, module federation has now evolved into a general concept adopted by other bundlers and frameworks.
 
 </div>
 
@@ -70,11 +72,11 @@ Module federation is one of the most popular approaches for implementing micro f
 
 <div class="dense">
 
--- a **host** is an application that includes the initial chunks of our code, the ones that will be used to bootstrap our container – as part of module federation, those are just referenced to a remote, which allows for smaller bundle sizes and shorter initial load times;
+-- a **host** is an application that includes the initial chunks of our code, the ones that will be used to bootstrap our container; the concept of module federation assumes that some components that container will render are just being referenced to a remote and not the initial bundle, which allows for smaller bundle sizes and shorter initial load times;
 
 -- a **remote** is a module that is being consumed by the host, and it can be either shared components or common dependencies to be used by different hosts;
 
--- a **bidirectional host** can be either a host or a remote (or both), consuming other applications or providing some code to other hosts.
+-- a **bidirectional host** is both a host and a remote, consuming other remotes and providing some code to other hosts.
 </div>
 
 ---
@@ -85,7 +87,7 @@ Module federation is one of the most popular approaches for implementing micro f
 <p>As mentioned earlier, initially, module federation was implemented as a plugin introduced in Webpack 5.
 To set up Module Federation in Webpack, you need to define the federated modules in your Webpack configuration files, specify the remote entry points and expose specific modules (aka “remotes”) that you want to share with other applications. The remote entry points represent the Webpack builds that expose modules for consumption.</p>
 
-<p>In the consuming application's (aka “host”) Webpack configuration, you define which federated modules you want to consume. You specify the remote entrypoints and the modules you want to import from those remotes.
+<p>In the consuming application's (aka “host”) Webpack configuration, you define which federated modules you want to consume. You specify the remote entry points and the modules you want to import from those remotes.
 When you build and run your applications, Webpack dynamically loads the federated modules at runtime. It fetches the remote entry points, resolves the requested modules, and injects them into the consuming application. This process allows you to share code between applications without physically bundling everything together.</p>
 
 <p>Note that as an application has multiple dependencies, a host can also have multiple remotes.</p>
@@ -223,7 +225,7 @@ plugins: [
 
 ### Adding an extra layer of indirection to the entire app
 
-We need `index.js` to be the app's entry point but inside of it we need to import another file, `bootstrap.js` (named this way by convention) that renders the entire app. This file contains what `index.js` would normally contain in a React app including `createRoot()` method. To allow Module Federation we need to import it dynamically using `import()` inside of `index.js`.
+We need `index.js` to be the app's entry point but inside of it we need to import another file, `bootstrap.js` (named this way by convention) that renders the entire app. This file contains what `index.js` would normally contain in a React app including `createRoot()` method. To allow Module Federation we need to import it dynamically using `import()` inside of `index.js`. This extra layer is needed for Webpack to load all of the imports necessary to render the remote app (failure to provide it will result in an error saying something like `Shared module is not available for eager consumption`).
 
 ```js
 //src/bootstrap.js
@@ -235,12 +237,6 @@ root.render(<App />);
 ```js
 //src/index.js
 import('bootstrap.js')
-```
-
-Without this extra layer of indirection Webpack would throw the following error:
-
-```js
-Shared module is not available for eager consumption
 ```
 
 </div>
@@ -370,9 +366,9 @@ http://localhost:3002/remoteEntry.js
 
 ```
 
-For the first one, you should see a page that displays the `Basic Remote Application` title with a `Remote Button`.
+For the first one, you should see a page that displays the `Basic Remote Application` title with your `Nav` component (a list of links).
 
-For the second one, you should see a `script` that exposes our button element for remote consumption.
+For the second one, you should see a `script` that exposes our component for remote consumption.
 
 </div>
 
@@ -397,7 +393,7 @@ For the second one, you should see a `script` that exposes our button element fo
 
 -- In this step we are going to set up an application as the host application. We are going to use a Next.js application for this purpose which will demonstrate Module Federation's ability to work with different frameworks.
 
-### General Steps: 
+### General Steps:
 
 -- In order to start consuming modules, we need to configure the plugin's `remotes` parameter which can take multiple remotes.
 
@@ -440,7 +436,7 @@ const SomeRemoteComponent = dynamic(() => import('someRemoteApp/SomeRemoteCompon
 
 </div>
 
---- 
+---
 
 ## Step 2: Setting up the Host Application /3
 
@@ -498,7 +494,7 @@ config.plugins.push(
 // next.config.js
 const NextFederationPlugin = require('@module-federation/nextjs-mf');
 module.exports = {
-  webpack(config) {    
+  webpack(config) {
       config.plugins.push(
         new NextFederationPlugin({
           name: 'nextApp',
@@ -536,8 +532,8 @@ export default function Home() {
       <Head>
         {/* Head example code */}
       </Head>
-      <LayoutBox>              
-        <Nav links={links} />       
+      <LayoutBox>
+        <Nav links={links} />
       </LayoutBox>
     </div>
   )
@@ -553,7 +549,7 @@ export default function Home() {
 <div class="dense">
 
 
-In your terminal from the `src/step-02-setting-up-host` folder run: 
+In your terminal from the `src/step-02-setting-up-host` folder run:
 
 ```bash
 yarn && yarn start
@@ -826,7 +822,7 @@ Please follow the guidelines from Zack Jackson (inventor & co-creator of module 
 
 -- **singleton (boolean)**: whether the dependency will be considered a singleton, which means that only a single instance of it is supposed to be shared across all the federated modules;
 
--- **requiredVersion (string)**: specifies the required version of the dependency, which makes any incompatible version loaded separately (not shared); note that if the `singleton` property setting `requiredVersion` will raise a warning in case of a conflict.
+-- **requiredVersion (string)**: specifies the required version of the dependency, which makes any incompatible version loaded separately (not shared); note that if the `singleton` property is set to `true`, setting `requiredVersion` will raise a warning in case of a conflict.
 
 ---
 
@@ -965,9 +961,9 @@ const packageJsonDependencies = require('./package.json').dependencies
 <p>
 When it comes to TypeScript applications, the most common problem with using external libraries (which can be federated remote modules) is that not all of them provide TypeScript types with the original code. In the context of module federation, this problem is aggravated by the fact that Webpack only loads resources from the federated module at runtime, TypeScript, however, needs those during compilation. In this case you have the following options:</p>
 
--- @module-federation/typescript,
+-- @module-federation/native-federation-typescript,
 
--- @module-federation/native-federation-typescript.
+-- @module-federation/typescript,
 
 -- packaging your types for distribution via a package registry (e.g., npm);
 
