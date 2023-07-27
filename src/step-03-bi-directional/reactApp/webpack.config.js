@@ -47,14 +47,6 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'reactApp',
       filename: 'remoteEntry.js',
-      remotes: {
-        remote:
-          'nextApp@http://localhost:8081/_next/static/chunks/remoteEntry.js',
-      },
-      exposes: {
-        './Nav': './src/components/Nav',
-        './Title': './src/components/Title',
-      },
       shared: {},
     }),
     new HtmlWebpackPlugin({
