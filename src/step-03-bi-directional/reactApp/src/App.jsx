@@ -1,6 +1,4 @@
 import React from 'react'
-import LayoutBox from 'remote/nextjs-layout-box'
-import Table from 'remote/nextjs-table'
 
 import Nav from './components/Nav'
 import Title from './components/Title'
@@ -42,12 +40,11 @@ const tableData = [
 
 function App() {
   return (
-    <LayoutBox>
+    <>
       <Title title="This is React.js App hosted at localhost:8080" />
       <Nav links={links} />
       <img style={{maxWidth: "200px", margin: "50px auto"}} src={Logo} alt="logo" />
-      <Table data={tableData} />
-    </LayoutBox>
+    </>
   )
 }
 
