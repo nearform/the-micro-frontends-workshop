@@ -599,7 +599,7 @@ In this step we are going to demonstrate Module Federation's bi-directional abil
 
 -- Expose both components as remotes inside of `webpack.config.js` file using the same syntax/pattern as in Step 1.
 
--- Import the `LayoutBox` and the `Table` component into `React.js` app by configuring `webpack.config.js` file using the same syntax from step 2. 
+-- Import the `LayoutBox` and the `Table` component into `React.js` app by configuring `webpack.config.js` file using the same syntax from step 2.
 
 -- Import the `Nav` and the `Title` component into `Next.js` app by configuring `next.config.js` file using the same syntax from step 2.
 
@@ -835,15 +835,13 @@ In this step, we are going to demonstrate sharing dependencies (React and React 
 
 <div class="dense">
 
--- Take the applications you created as part of step 3 exercises;
+-- Modify Webpack config of the React app to have React and React DOM as shared dependencies.
 
--- Modify Webpack config of the React app to have React and React DOM as shared dependencies;
+-- Modify Next.js config of the Next.js app to have React and React DOM as shared dependencies.
 
--- Modify Next.js config of the Next.js app to have React and React DOM as shared dependencies;
+-- Set the versions of these shared dependencies to be read from the respective `package.json` files.
 
--- Set the versions of these shared dependencies to be read from the respective `package.json` files;
-
--- Make sure the dependencies are being shared as singletons;
+-- Make sure the dependencies are being shared as singletons.
 
 -- Try changing the version of React and React DOM in the `package.json` file of the React app to a previous one, and make sure you get a warning about version mismatch in the console.
 
