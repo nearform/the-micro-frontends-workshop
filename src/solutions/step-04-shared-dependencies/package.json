@@ -1,5 +1,5 @@
 {
-  "name": "shared-dependencies",
+  "name": "shared-dependenciesSolution",
   "private": true,
   "workspaces": ["./reactApp", "./nextApp"],
   "version": "1.0.0",

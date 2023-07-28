@@ -5,7 +5,11 @@
     "src/step-01-setting-up-remote",
     "src/step-02-setting-up-host",
     "src/step-03-bi-directional",
-    "src/step-04-shared-dependencies"
+    "src/step-04-shared-dependencies",
+    "src/solutions/step-01-setting-up-remote",
+    "src/solutions/step-02-setting-up-host",
+    "src/solutions/step-03-bi-directional",
+    "src/solutions/step-04-shared-dependencies"
   ],
   "version": "1.0.0",
   "license": "",

@@ -1,5 +1,5 @@
 {
-  "name": "bi-directional",
+  "name": "bi-directionalSolution",
   "private": true,
   "workspaces": ["./reactApp", "./nextApp"],
   "version": "1.0.0",
