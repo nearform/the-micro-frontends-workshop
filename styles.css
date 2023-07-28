@@ -36,6 +36,11 @@ img {
   text-align: center;
 }
 
+h2 {
+  font-size: bigger;
+  font-weight: bold;
+}
+
 ul,
 ol {
   font-size: 1.75rem;

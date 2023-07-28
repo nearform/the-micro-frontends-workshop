@@ -1,11 +1,11 @@
 import Head from 'next/head'
-import Image from "next/image";
+import Image from 'next/image'
 import dynamic from 'next/dynamic'
 
 import styles from '../styles/Home.module.css'
 import LayoutBox from '../components/nextjs-layout-box'
 import Table from '../components/nextjs-table'
-import Logo from "../public/nextjs.svg";
+import Logo from '../public/nextjs.svg'
 
 const Nav = dynamic(() => import('remote/Nav'), {
   ssr: false,
@@ -52,7 +52,7 @@ export default function Home() {
       </Head>
 
       <LayoutBox>
-        <Title title="This is Next.js App Hosted at localhost:8081" />
+        <Title title="This is Next.js App" />
         <Nav links={links} />
         <Image width="200" src={Logo} alt="logo" />
         <Table data={tableData} />
