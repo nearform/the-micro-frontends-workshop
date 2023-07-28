@@ -47,6 +47,7 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'reactApp',
       filename: 'remoteEntry.js',
+      // Your configuration goes in here
       shared: {},
     }),
     new HtmlWebpackPlugin({

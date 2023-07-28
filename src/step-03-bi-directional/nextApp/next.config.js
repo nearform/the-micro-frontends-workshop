@@ -5,6 +5,7 @@ module.exports = {
       config.plugins.push(
         new NextFederationPlugin({
           name: 'nextApp',
+          // Place your configuration here
           extraOptions: {
             skipSharingNextInternals: true,
           },
