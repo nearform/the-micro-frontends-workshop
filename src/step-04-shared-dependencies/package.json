@@ -6,6 +6,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "yarn workspace reactApp start & yarn workspace nextApp dev"
+    "start": "yarn workspace react-app start & yarn workspace next-app dev"
   }
 }

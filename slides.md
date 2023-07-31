@@ -490,7 +490,7 @@ config.plugins.push(
 
 -- Configure the application inside `next.config.js` file so it uses `NextFederationPlugin`.
 
--- We added a `reactApp` in this step and exposed the `Nav` component (similar to step 1). Configure `nextApp` so it consumes that component from port `8080`.
+-- We added a `react-app` in this step and exposed the `Nav` component (similar to step 1). Configure `nextApp` so it consumes that component from port `8080`.
 
 </div>
 
@@ -505,9 +505,9 @@ module.exports = {
   webpack(config) {
       config.plugins.push(
         new NextFederationPlugin({
-          name: 'nextApp',
+          name: 'next-app',
           remotes: {
-            remote: 'reactApp@http://localhost:8080/remoteEntry.js',
+            remote: 'react-app@http://localhost:8080/remoteEntry.js',
           },
           filename: 'static/chunks/remoteEntry.js'
         })
@@ -585,11 +585,11 @@ You should see the `LayoutBox` component acting as a wrapper and the remote `Nav
 
 ---
 
-## Step 3: Setting up a Bi-Directional Example
+## Step 3: Setting up a Bidirectional Example
 
 <div class="dense">
 
-In this step we are going to demonstrate Module Federation's bi-directional ability to share modules between multiple apps that can act both as the host and the remote at the same time by putting together what we learned in the previous two steps.
+In this step we are going to demonstrate Module Federation's bidirectional ability to share modules between multiple apps that can act both as the host and the remote at the same time by putting together what we learned in the previous two steps.
 
 </div>
 
@@ -633,9 +633,9 @@ In this step we are going to demonstrate Module Federation's bi-directional abil
 // next.config.js
 //...
 new NextFederationPlugin({
-    name: 'nextApp',
+    name: 'next-app',
     remotes: {
-        remote: 'reactApp@http://localhost:8080/remoteEntry.js',
+        remote: 'react-app@http://localhost:8080/remoteEntry.js',
     },
     exposes: {
         './nextjs-layout-box': './components/nextjs-layout-box.js',
@@ -653,10 +653,10 @@ new NextFederationPlugin({
 // webpack.config.js
 // ...
 new ModuleFederationPlugin({
-      name: 'reactApp',
+      name: 'react-app',
       filename: 'remoteEntry.js',
       remotes: {
-        remote: 'nextApp@http://localhost:8081/_next/static/chunks/remoteEntry.js',
+        remote: 'next-app@http://localhost:8081/_next/static/chunks/remoteEntry.js',
       },
       exposes: {
         './Nav': './src/components/Nav',
@@ -688,7 +688,7 @@ export default function Home() {
       </Head>
 
       <LayoutBox>
-        <Title title="This is Next.js App" />
+        <Title>This is Next.js App</Title>
         <Nav links={links} />
         <Image width="200" src={Logo} alt="logo" />
         <Table data={tableData} />
@@ -713,7 +713,7 @@ import Table from 'remote/nextjs-table'
 function App() {
   return (
     <LayoutBox>
-      <Title title="This is React.js App" />
+      <Title>This is React.js App</Title>
       <Nav links={links} />
       <img style={{maxWidth: "200px", margin: "50px auto"}} src={Logo} alt="logo" />
       <Table data={tableData} />

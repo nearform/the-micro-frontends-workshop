@@ -43,7 +43,7 @@ const tableData = [
 function App() {
   return (
     <LayoutBox>
-      <Title title="This is React.js App" />
+      <Title>This is React.js App</Title>
       <Nav links={links} />
       <img
         style={{ maxWidth: '200px', margin: '50px auto' }}

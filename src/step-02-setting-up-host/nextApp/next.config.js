@@ -3,10 +3,9 @@
 
 module.exports = {
   webpack(config) {
-    config.plugins
-      .push
-      // Place your NextFederationPlugin config here
-      ()
+    // Place your NextFederationPlugin config here
+    config.plugins.push()
+
     return config
   },
   reactStrictMode: true,

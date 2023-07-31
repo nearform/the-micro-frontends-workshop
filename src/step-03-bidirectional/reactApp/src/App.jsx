@@ -46,7 +46,7 @@ const tableData = [
 function App() {
   return (
     <>
-      <Title title="This is a React.js App" />
+      <Title>This is a React.js App</Title>
       <Nav links={links} />
       <img
         style={{ maxWidth: '200px', margin: '50px auto' }}

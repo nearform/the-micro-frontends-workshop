@@ -14,7 +14,7 @@ export default function Home() {
         <h1 style={{ textAlign: 'center' }}>
           Basic Host Application
         </h1>
-      </div>{' '}
+      </div>
     </div>
   )
 }

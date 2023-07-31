@@ -4,7 +4,7 @@ module.exports = {
   webpack(config) {
     config.plugins.push(
       new NextFederationPlugin({
-        name: 'nextApp',
+        name: 'next-app',
         // Place your configuration here
         remotes: {},
         filename: 'static/chunks/remoteEntry.js',

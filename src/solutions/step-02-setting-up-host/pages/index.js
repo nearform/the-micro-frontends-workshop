@@ -1,7 +1,8 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
 import dynamic from 'next/dynamic'
+
 import LayoutBox from '../components/nextjs-layout-box'
+import styles from '../styles/Home.module.css'
 
 const Nav = dynamic(() => import('remote/Nav'), {
   ssr: false,
