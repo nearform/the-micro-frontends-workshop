@@ -27,7 +27,7 @@
     "@types/sinon": "^10.0.15",
     "@types/tap": "^15.0.8",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
-    "@typescript-eslint/parser": "^6.1.0",
+    "@typescript-eslint/parser": "^6.2.0",
     "eslint": "^8.45.0",
     "prettier": "^3.0.0",
     "sinon": "^15.2.0",
