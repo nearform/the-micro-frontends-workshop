@@ -1,11 +1,11 @@
 import Head from 'next/head'
-import Image from "next/image";
+import Image from 'next/image'
 import dynamic from 'next/dynamic'
 
 import styles from '../styles/Home.module.css'
 import LayoutBox from '../components/nextjs-layout-box'
 import Table from '../components/nextjs-table'
-import Logo from "../public/nextjs.svg";
+import Logo from '../public/nextjs.svg'
 
 const tableData = [
   {
@@ -19,7 +19,7 @@ const tableData = [
     country: 'USA',
   },
   {
-    company: 'Microsfot',
+    company: 'Microsoft',
     state: 'Washington',
     country: 'USA',
   },
