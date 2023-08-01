@@ -18,7 +18,7 @@ const tableData = [
     country: 'USA',
   },
   {
-    company: 'Microsfot',
+    company: 'Microsoft',
     state: 'Washington',
     country: 'USA',
   },
