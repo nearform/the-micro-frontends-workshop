@@ -1,5 +1,4 @@
 const NextFederationPlugin = require('@module-federation/nextjs-mf/lib/NextFederationPlugin')
-const packageJsonDependencies = require('./package.json').dependencies
 
 module.exports = {
   webpack(config, options) {
@@ -17,14 +16,7 @@ module.exports = {
             './nextjs-table': './components/nextjs-table.js',
           },
           shared: {
-            react: {
-              requiredVersion: packageJsonDependencies.react,
-              singleton: true,
-            },
-            'react-dom': {
-              requiredVersion: packageJsonDependencies['react-dom'],
-              singleton: true,
-            },
+            // Configure shared modules here
           },
           extraOptions: {
             skipSharingNextInternals: true,

@@ -4,7 +4,7 @@ import Nav from './components/Nav'
 import Title from './components/Title'
 
 import './style.css'
-import Logo from "./react-logo.png"
+import Logo from './react-logo.png'
 
 const links = [
   { url: '/', label: 'Home' },
@@ -15,6 +15,10 @@ const links = [
   },
 ]
 
+/**
+ * Feel free to use the following data for your table.
+ */
+/*
 const tableData = [
   {
     company: 'IBM',
@@ -35,15 +39,20 @@ const tableData = [
     company: 'Renalytix',
     state: 'England',
     country: 'UK',
-  }
+  },
 ]
+*/
 
 function App() {
   return (
     <>
-      <Title title="This is React.js App hosted at localhost:8080" />
+      <Title>This is a React.js App</Title>
       <Nav links={links} />
-      <img style={{maxWidth: "200px", margin: "50px auto"}} src={Logo} alt="logo" />
+      <img
+        style={{ maxWidth: '200px', margin: '50px auto' }}
+        src={Logo}
+        alt="logo"
+      />
     </>
   )
 }

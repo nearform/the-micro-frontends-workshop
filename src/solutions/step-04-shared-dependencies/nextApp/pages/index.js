@@ -52,7 +52,7 @@ export default function Home() {
       </Head>
 
       <LayoutBox>
-        <Title title="This is Next.js App Hosted at localhost:8081" />
+        <Title>This is Next.js App</Title>
         <Nav links={links} />
         <Image width="200" src={Logo} alt="logo" />
         <Table data={tableData} />

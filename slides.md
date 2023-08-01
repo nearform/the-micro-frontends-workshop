@@ -29,11 +29,13 @@ The concept of <em>micro frontends</em> was first mentioned circa 2016 as an ext
 
 ## What is Module Federation?
 
-<div class="bigger">
+<div class="dense">
 
-Module federation is one of the most popular approaches for implementing micro frontend architecture on either the client or server side. With module federation, each micro frontend is treated as a standalone module that can be developed, deployed, and versioned independently, which allows those modules to share and consume each other's functionality, resources, and components at runtime, improving collaboration and reusability.
+Module federation is one of the most popular approaches for implementing micro frontend architecture on either the client or server side.
 
-Started as a Webpack Plugin, module federation has now evolved into a general concept adopted by other bundlers and frameworks.
+With module federation, each micro frontend is treated as a standalone module that can be developed, deployed, and versioned independently, which allows those modules to share and consume each other's functionality, resources, and components at runtime, improving collaboration and reusability.
+
+Started as a Webpack Plugin, module federation has now evolved into a general concept adopted by other bundlers and frameworks including Vite and Rollup, for example.
 
 </div>
 
@@ -43,11 +45,11 @@ Started as a Webpack Plugin, module federation has now evolved into a general co
 
 <div class="dense">
 
--- **runtime Web Components**: each micro frontend is mounted at a custom HTML element, and the container performs instantiation;
+-- **Runtime Web Components**: each micro frontend is mounted at a custom HTML element, and the container performs instantiation.
 
--- **runtime Javascript integration**: somewhat similar to both the previous approach and module federation, this one includes each micro frontend onto the page using a `<script>` tag; the container application becomes an entry point, decides which micro frontend to be mounted, and calls the relevant function telling the micro frontend when and where to get rendered; each build file can be deployed independently;
+-- **Runtime Javascript integration**: somewhat similar to both the previous approach and module federation, this one includes each micro frontend onto the page using a `<script>` tag; the container application becomes an entry point, decides which micro frontend to be mounted, and calls the relevant function telling the micro frontend when and where to get rendered; each build file can be deployed independently.
 
--- **iFrames**: this approach is about rendering various micro frontends in separate iframes and composing those via a container application; the most obvious benefit of this approach is complete decoupling of the application components; however, this approach also has some substantial cons like composition complexity and high potential for performance issues;
+-- **iFrames**: this approach is about rendering various micro frontends in separate iframes and composing those via a container application; the most obvious benefit of this approach is complete decoupling of the application components; however, this approach also has some substantial cons like composition complexity and high potential for performance issues.
 
 </div>
 
@@ -55,13 +57,13 @@ Started as a Webpack Plugin, module federation has now evolved into a general co
 
 ## Other Approaches/2
 
--- **edge-side Composition**: edge-side composition assumes that micro frontends are assembled by the edge using the Edge Side Include (ESI) specification; the biggest cons are the fact that support differs depending on the CDN, and each vendor (Akamai, CloudFlare, Fastly, etc.) has its own features and limitations;
+-- **edge-side Composition**: edge-side composition assumes that micro frontends are assembled by the edge using the Edge Side Include (ESI) specification; the biggest cons are the fact that support differs depending on the CDN, and each vendor (Akamai, CloudFlare, Fastly, etc.) has its own features and limitations.
 
 -- **dedicated Frameworks for MFE Composition**: one of the easiest ways to implement micro frontend architecture is to use a dedicated framework that takes care of all the ins and outs and lets you focus on the application code; some notable examples of such frameworks are listed below:
 
 <div class="sublist">
 
-  -- client-side: [SingleSPA](https://single-spa.js.org/), [Qiankun](https://qiankun.umijs.org/) (based on SingleSPA), [Luigi](https://luigi-project.io/);
+  -- client-side: [SingleSPA](https://single-spa.js.org/), [Qiankun](https://qiankun.umijs.org/) (based on SingleSPA), [Luigi](https://luigi-project.io/),
 
   -- server-side: [Ara](https://ara-framework.github.io/website/), [Bit](https://bit.dev/), [Open Components](https://opencomponents.github.io/), [Piral](https://piral.io/).
 </div>
@@ -72,11 +74,11 @@ Started as a Webpack Plugin, module federation has now evolved into a general co
 
 <div class="dense">
 
--- a **host** is an application that includes the initial chunks of our code, the ones that will be used to bootstrap our container; the concept of module federation assumes that some components that container will render are just being referenced to a remote and not the initial bundle, which allows for smaller bundle sizes and shorter initial load times;
+-- A **host** is an application that includes the initial chunks of our code, the ones that will be used to bootstrap our container; the concept of module federation assumes that some components that container will render are just being referenced to a remote and not the initial bundle, which allows for smaller bundle sizes and shorter initial load times.
 
--- a **remote** is a module that is being consumed by the host, and it can be either shared components or common dependencies to be used by different hosts;
+-- A **remote** is a module that is being consumed by the host, and it can be either shared components or common dependencies to be used by different hosts.
 
--- a **bidirectional host** is both a host and a remote, consuming other remotes and providing some code to other hosts.
+-- A **bidirectional host** is both a host and a remote, consuming other remotes and providing some code to other hosts.
 </div>
 
 ---
@@ -104,7 +106,7 @@ When you build and run your applications, Webpack dynamically loads the federate
 
 -- Node LTS
 
--- yarn
+-- yarn => 1.2
 
 ### Setup
 
@@ -121,13 +123,15 @@ cd the-micro-frontends-workshop && yarn install
 
 <div class="dense">
 
--- This workshop is made up of multiple, incremental modules (aka exercises);
+-- This workshop is made up of multiple, incremental modules (aka exercises).
 
--- Each module builds on top of the previous one;
+-- Each module builds on top of the previous one.
 
--- At each step, you are asked to add features and solve problems;
+-- At each step, you are asked to add features and solve problems.
 
--- You will find the solution to each step in the `src/step-{n}-{name}` folder.
+-- You will find a template to base your solution on in the `src/step-{n}-{name}` folder.
+
+-- You will find the solution to each step in the `src/solutions/step-{n}-{name}` folder.
 
 </div>
 
@@ -138,6 +142,10 @@ cd the-micro-frontends-workshop && yarn install
 -- `cd src/step-{n}-{name}`
 
 -- Check out README.md
+
+-- Install dependencies.
+
+-- Start the development server(s).
 
 ### Example
 
@@ -155,11 +163,11 @@ yarn run start
 
 <div class="dense">
 
--- There are a few key steps that need to be taken in order to expose a module for remote consumption (federation);
+-- There are a few key steps that need to be taken in order to expose a module for remote consumption (federation).
 
 -- In this example, we are going to demonstrate these steps in a basic React app since any Webpack based application that supports MF will have a similar flow for enabling this feature.
 
--- This aplication on its own will work just as any other React application but it will have the ability to expose a specific part of it as a remote which we will be able to consume inside of another application in later steps of the workshop.
+-- This application on its own will work just as any other React application but it will have the ability to expose a specific part of it as a remote which we will be able to consume inside of another application in later steps of the workshop.
 
 </div>
 
@@ -208,11 +216,11 @@ plugins: [
 // ...
 ```
 
--- `name` is where we define a name to distinguish modules. This value will be used by a consumer application when defining remotes inside of it;
+-- `name` is where we define a name to distinguish modules. This value will be used by a consumer application when defining remotes inside of it.
 
--- `filename` can be any value, and it will be an entry point for exposed/shared modules. `remoteEntry.js` is most commonly/conventionally used for this purpose;
+-- `filename` can be any value, and it will be an entry point for exposed/shared modules. `remoteEntry.js` is most commonly/conventionally used for this purpose.
 
--- in the `exposes` object we define components for remote consumption. The key name should always be in form of `./ComponentName` in any application that relies on Webpack's ModuleFederationPlugin and the value should be the component's relative path to the webpack.config.js.
+-- In the `exposes` object we define components for remote consumption. The key name should always be in form of `./ComponentName` in any application that relies on Webpack's ModuleFederationPlugin and the value should be the component's relative path to the webpack.config.js.
 
 
 </div>
@@ -249,7 +257,7 @@ import('bootstrap.js')
 
 In `src` folder of the provided basic React application:
 
--- import the `Nav` component from `src/components` folder, dispaly it inside the `App.js` file under the title and pass some links as props to it; the links props should be an array of objects like this:
+-- Import the `Nav` component from `src/components` folder, display it inside the `App.js` file under the title and pass some links as props to it; the links props should be an array of objects like this:
 ```js
   const links = [
     { url: "/", label: "Home Page" },
@@ -257,7 +265,7 @@ In `src` folder of the provided basic React application:
   ]
 ```
 
--- render the entire application via the `createRoot()` method inside the `bootstrap.js ` file and import that file in the `index.js` file using the `import` statement.
+-- Render the entire application via the `createRoot()` method inside the `bootstrap.js ` file and import that file in the `index.js` file using the `import` statement.
 
 </div>
 
@@ -269,11 +277,11 @@ In `src` folder of the provided basic React application:
 
 In `webpack.config.js` file:
 
--- import `ModuleFederationPlugin` plugin from Webpack's `container` object;
+-- Import `ModuleFederationPlugin` plugin from Webpack's `container` object.
 
--- in exported modules, instantiate `new ModuleFederationPlugin`;
+-- In exported modules, instantiate `new ModuleFederationPlugin`.
 
--- pass a configuration object and define values for `name`, `filename`, and `exposes` keys. Remember that `filename` uses a naming convention, and `exposes` refers to the element that we want to expose.
+-- Pass a configuration object and define values for `name`, `filename`, and `exposes` keys. Remember that `filename` uses a naming convention, and `exposes` refers to the element that we want to expose.
 
 </div>
 
@@ -482,7 +490,7 @@ config.plugins.push(
 
 -- Configure the application inside `next.config.js` file so it uses `NextFederationPlugin`.
 
--- We added a `reactApp` in this step and exposed the `Nav` component (similar to step 1). Configure `nextApp` so it consumes that component from port `8080`.
+-- We added a `react-app` in this step and exposed the `Nav` component (similar to step 1). Configure `nextApp` so it consumes that component from port `8080`.
 
 </div>
 
@@ -497,9 +505,9 @@ module.exports = {
   webpack(config) {
       config.plugins.push(
         new NextFederationPlugin({
-          name: 'nextApp',
+          name: 'next-app',
           remotes: {
-            remote: 'reactApp@http://localhost:8080/remoteEntry.js',
+            remote: 'react-app@http://localhost:8080/remoteEntry.js',
           },
           filename: 'static/chunks/remoteEntry.js'
         })
@@ -577,11 +585,11 @@ You should see the `LayoutBox` component acting as a wrapper and the remote `Nav
 
 ---
 
-## Step 3: Setting up a Bi-Directional Example
+## Step 3: Setting up a Bidirectional Example
 
 <div class="dense">
 
-In this step we are going to demonstrate Module Federation's bi-directional ability to share modules between multiple apps that can act both as the host and the remote at the same time by putting together what we learned in the previous two steps.
+In this step we are going to demonstrate Module Federation's bidirectional ability to share modules between multiple apps that can act both as the host and the remote at the same time by putting together what we learned in the previous two steps.
 
 </div>
 
@@ -599,7 +607,7 @@ In this step we are going to demonstrate Module Federation's bi-directional abil
 
 -- Expose both components as remotes inside of `webpack.config.js` file using the same syntax/pattern as in Step 1.
 
--- Import the `LayoutBox` and the `Table` component into `React.js` app by configuring `webpack.config.js` file using the same syntax from step 2. 
+-- Import the `LayoutBox` and the `Table` component into `React.js` app by configuring `webpack.config.js` file using the same syntax from step 2.
 
 -- Import the `Nav` and the `Title` component into `Next.js` app by configuring `next.config.js` file using the same syntax from step 2.
 
@@ -625,9 +633,9 @@ In this step we are going to demonstrate Module Federation's bi-directional abil
 // next.config.js
 //...
 new NextFederationPlugin({
-    name: 'nextApp',
+    name: 'next-app',
     remotes: {
-        remote: 'reactApp@http://localhost:8080/remoteEntry.js',
+        remote: 'react-app@http://localhost:8080/remoteEntry.js',
     },
     exposes: {
         './nextjs-layout-box': './components/nextjs-layout-box.js',
@@ -645,10 +653,10 @@ new NextFederationPlugin({
 // webpack.config.js
 // ...
 new ModuleFederationPlugin({
-      name: 'reactApp',
+      name: 'react-app',
       filename: 'remoteEntry.js',
       remotes: {
-        remote: 'nextApp@http://localhost:8081/_next/static/chunks/remoteEntry.js',
+        remote: 'next-app@http://localhost:8081/_next/static/chunks/remoteEntry.js',
       },
       exposes: {
         './Nav': './src/components/Nav',
@@ -680,7 +688,7 @@ export default function Home() {
       </Head>
 
       <LayoutBox>
-        <Title title="This is Next.js App Hosted at localhost:8081" />
+        <Title>This is Next.js App</Title>
         <Nav links={links} />
         <Image width="200" src={Logo} alt="logo" />
         <Table data={tableData} />
@@ -705,7 +713,7 @@ import Table from 'remote/nextjs-table'
 function App() {
   return (
     <LayoutBox>
-      <Title title="This is React.js App hosted at localhost:8080" />
+      <Title>This is React.js App</Title>
       <Nav links={links} />
       <img style={{maxWidth: "200px", margin: "50px auto"}} src={Logo} alt="logo" />
       <Table data={tableData} />
@@ -762,29 +770,29 @@ You should see the `Next.js` app wrapped in its local `LayoutBox` as well the tw
 
 <div class="dense">
 
--- **shared dependencies** refer to the libraries, frameworks, or modules that are required by multiple federated modules to function properly. By sharing these dependencies, modules can avoid duplication and ensure consistency and compatibility;
+-- **shared dependencies** refer to the libraries, frameworks, or modules that are required by multiple federated modules to function properly. By sharing these dependencies, modules can avoid duplication and ensure consistency and compatibility.
 
--- shared dependencies typically include runtime libraries, such as **React** or **Angular**, along with any additional utility libraries or common components that are needed by the federated modules. They are typically declared and managed in a shared configuration file, allowing modules to access and utilize them seamlessly.
+-- Shared dependencies typically include runtime libraries, such as **React** or **Angular**, along with any additional utility libraries or common components that are needed by the federated modules. They are typically declared and managed in a shared configuration file, allowing modules to access and utilize them seamlessly.
 
 </div>
 
 Please follow the guidelines from Zack Jackson (inventor & co-creator of module federation):
 
--- sharing should be done with care - since shared modules cannot be tree-shaken;
+-- Sharing should be done with care - since shared modules cannot be tree-shaken.
 
--- if you need a singleton (like things that depend on React context), then it must be shared;
+-- If you need a singleton (like things that depend on React context), then it must be shared.
 
--- sharing all dependencies can lead to larger bundles so its best to consider case by case.
+-- Sharing all dependencies can lead to larger bundles so its best to consider case by case.
 
 ---
 
 ## Shared dependencies: Shared API
 
--- **shared (object | [string])**: an object or an array containing a list of dependency names that can be shared across the federated modules;
+-- **shared (object | [string])**: an object or an array containing a list of dependency names that can be shared across the federated modules.
 
--- **eager (boolean)**: specifies whether the dependency will be eagerly loaded and provided to other federated modules as soon as the host app starts (otherwise will be loaded lazily when first requested by the federated app);
+-- **eager (boolean)**: specifies whether the dependency will be eagerly loaded and provided to other federated modules as soon as the host app starts (otherwise will be loaded lazily when first requested by the federated app).
 
--- **singleton (boolean)**: whether the dependency will be considered a singleton, which means that only a single instance of it is supposed to be shared across all the federated modules;
+-- **singleton (boolean)**: whether the dependency will be considered a singleton, which means that only a single instance of it is supposed to be shared across all the federated modules.
 
 -- **requiredVersion (string)**: specifies the required version of the dependency, which makes any incompatible version loaded separately (not shared); note that if the `singleton` property is set to `true`, setting `requiredVersion` will raise a warning in case of a conflict.
 
@@ -835,15 +843,13 @@ In this step, we are going to demonstrate sharing dependencies (React and React 
 
 <div class="dense">
 
--- Take the applications you created as part of step 3 exercises;
+-- Modify Webpack config of the React app to have React and React DOM as shared dependencies.
 
--- Modify Webpack config of the React app to have React and React DOM as shared dependencies;
+-- Modify Next.js config of the Next.js app to have React and React DOM as shared dependencies.
 
--- Modify Next.js config of the Next.js app to have React and React DOM as shared dependencies;
+-- Set the versions of these shared dependencies to be read from the respective `package.json` files.
 
--- Set the versions of these shared dependencies to be read from the respective `package.json` files;
-
--- Make sure the dependencies are being shared as singletons;
+-- Make sure the dependencies are being shared as singletons.
 
 -- Try changing the version of React and React DOM in the `package.json` file of the React app to a previous one, and make sure you get a warning about version mismatch in the console.
 
@@ -929,7 +935,7 @@ When it comes to TypeScript applications, the most common problem with using ext
 
 -- @module-federation/typescript,
 
--- packaging your types for distribution via a package registry (e.g., npm);
+-- packaging your types for distribution via a package registry (e.g., npm),
 
 -- referencing types across monorepo (if possible).
 

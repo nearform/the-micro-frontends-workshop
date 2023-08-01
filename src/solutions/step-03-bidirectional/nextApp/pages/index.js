@@ -7,6 +7,23 @@ import LayoutBox from '../components/nextjs-layout-box'
 import Table from '../components/nextjs-table'
 import Logo from '../public/nextjs.svg'
 
+const Nav = dynamic(() => import('remote/Nav'), {
+  ssr: false,
+})
+
+const Title = dynamic(() => import('remote/Title'), {
+  ssr: false,
+})
+
+const links = [
+  { url: '/', label: 'Home' },
+  { url: 'https://nextjs.org/', label: 'Learn more about Next.js' },
+  {
+    url: 'https://webpack.js.org/concepts/module-federation/',
+    label: 'Learn more about Module Federation',
+  },
+]
+
 const tableData = [
   {
     company: 'Nutrien',
@@ -35,6 +52,8 @@ export default function Home() {
       </Head>
 
       <LayoutBox>
+        <Title>This is Next.js App</Title>
+        <Nav links={links} />
         <Image width="200" src={Logo} alt="logo" />
         <Table data={tableData} />
       </LayoutBox>
