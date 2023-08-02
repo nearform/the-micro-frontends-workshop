@@ -1,11 +1,11 @@
 {
-  "name": "next-app-solution",
+  "name": "step-02-next-app-solution",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 8080",
     "build": "next build",
-    "start": "yarn workspace react-app-solution start & yarn workspace next-app-solution dev",
+    "start": "next start",
     "lint": "next lint"
   },
   "workspaces": ["../step-01-setting-up-remote", "./"],

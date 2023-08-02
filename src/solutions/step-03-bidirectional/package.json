@@ -1,11 +1,10 @@
 {
-  "name": "bidirectional-solution",
+  "name": "step-03-bidirectional-solution",
   "private": true,
-  "workspaces": ["./reactApp", "./nextApp"],
+  "workspaces": ["step-03-next-app-solution", "step-03-react-app-solution"],
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "start": "yarn workspace react-app-solution start & yarn workspace next-app-solution dev"
+    "start": "npm start --workspace=step-03-react-app-solution & npm run dev --workspace=step-03-next-app-solution"
   }
 }

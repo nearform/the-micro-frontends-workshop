@@ -1,11 +1,11 @@
 {
-  "name": "shared-dependencies-solution",
+  "name": "step-04-shared-dependencies-solution",
   "private": true,
-  "workspaces": ["./reactApp", "./nextApp"],
+  "workspaces": ["step-04-next-app-solution", "step-04-react-app-solution"],
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "yarn workspace react-app-solution start & yarn workspace next-app-solution dev"
+    "start": "npm start --workspace=step-04-react-app-solution & npm run dev --workspace=step-04-next-app-solution"
   }
 }
