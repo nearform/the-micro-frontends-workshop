@@ -106,7 +106,7 @@ When you build and run your applications, Webpack dynamically loads the federate
 
 -- Node LTS
 
--- npm v7.24.2
+-- npm >= 7.24.2
 
 ### Setup
 

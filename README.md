@@ -7,7 +7,7 @@
 ## Requirements
 
 - Node LTS
-- npm v7.24.2
+- npm >= 7.24.2
 
 
 ## Installation and Running Exercises
