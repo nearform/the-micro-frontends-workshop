@@ -106,13 +106,13 @@ When you build and run your applications, Webpack dynamically loads the federate
 
 -- Node LTS
 
--- yarn => 1.2
+-- npm v7.24.2
 
 ### Setup
 
 ```bash
 git clone https://github.com/nearform/the-micro-frontends-workshop
-cd the-micro-frontends-workshop && yarn install
+cd the-micro-frontends-workshop && npm install
 ```
 
 </div>
@@ -152,9 +152,9 @@ cd the-micro-frontends-workshop && yarn install
 ```bash
 cd src/step-01-setting-up-remote
 
-yarn install
+npm install
 
-yarn run start
+npm start
 ```
 
 ---
@@ -452,7 +452,7 @@ const SomeRemoteComponent = dynamic(() => import('someRemoteApp/SomeRemoteCompon
 
 -- To enable Module Federation in Next.js we need to import `NextFederationPlugin` in the `next.config.js` file since `ModuleFederationPlugin` and `webpack.config.js` are not used in Next.js apps.
 
--- Note that `NextFederationPlugin` has to be installed separately with `yarn add @module-federation/nextjs-mf`.
+-- Note that `NextFederationPlugin` has to be installed separately with `npm install @module-federation/nextjs-mf`.
 
 -- `filename` property needs to be set using the `static/chunks/{fileName}.js` pattern.
 
@@ -560,7 +560,7 @@ export default function Home() {
 In your terminal from the `src/step-02-setting-up-host` folder run:
 
 ```bash
-yarn && yarn start
+npm i && npm start
 ```
 
 This will start both remote and host applications at the same time on ports 8081 and 8080 respectively.

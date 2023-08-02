@@ -7,7 +7,7 @@
 ## Requirements
 
 - Node LTS
-- yarn => 1.2 - you can install it with via npm [`npm install --global yarn`](https://classic.yarnpkg.com/lang/en/docs/install/)
+- npm v7.24.2
 
 
 ## Installation and Running Exercises
