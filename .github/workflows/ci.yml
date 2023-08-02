@@ -17,6 +17,7 @@ jobs:
       - run: |
           npm ci
           npm run lint
+          npm run build
   automerge:
     needs: build
     runs-on: ubuntu-latest
