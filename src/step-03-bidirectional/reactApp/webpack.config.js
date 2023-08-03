@@ -46,7 +46,7 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'react-app',
+      name: 'reactApp',
       filename: 'remoteEntry.js',
       // Your configuration goes in here
       shared: {},
