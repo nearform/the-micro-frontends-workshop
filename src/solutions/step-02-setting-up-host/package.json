@@ -1,23 +1,11 @@
 {
-  "name": "step-02-next-app-solution",
-  "version": "1.0.0",
+  "name": "step-02-setting-up-host-solution",
   "private": true,
+  "workspaces": ["step-02-next-app-solution", "step-02-react-app-solution"],
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev": "next dev -p 8080",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "workspaces": ["../step-01-setting-up-remote", "./"],
-  "dependencies": {
-    "@module-federation/nextjs-mf": "7.0.2",
-    "next-transpile-modules": "10.0.0",
-    "next": "13.4.9",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
-  "devDependencies": {
-    "eslint": "8.46.0",
-    "eslint-config-next": "13.4.9"
+    "start": "npm start --workspace=step-02-react-app-solution & npm run dev --workspace=step-02-next-app-solution"
   }
 }

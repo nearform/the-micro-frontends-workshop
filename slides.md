@@ -505,9 +505,9 @@ module.exports = {
   webpack(config) {
       config.plugins.push(
         new NextFederationPlugin({
-          name: 'next-app',
+          name: 'nextApp',
           remotes: {
-            remote: 'react-app@http://localhost:8080/remoteEntry.js',
+            remote: 'reactApp@http://localhost:8080/remoteEntry.js',
           },
           filename: 'static/chunks/remoteEntry.js'
         })

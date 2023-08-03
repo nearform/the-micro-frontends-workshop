@@ -1,5 +1,5 @@
 {
-  "name": "setting-up-host",
+  "name": "step-02-setting-up-host",
   "private": true,
   "workspaces": ["step-02-next-app", "step-02-react-app"],
   "version": "1.0.0",
