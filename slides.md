@@ -634,9 +634,9 @@ In this step we are going to demonstrate Module Federation's bidirectional abili
 // next.config.js
 //...
 new NextFederationPlugin({
-    name: 'next-app',
+    name: 'nextApp',
     remotes: {
-        remote: 'react-app@http://localhost:8080/remoteEntry.js',
+        remote: 'reactApp@http://localhost:8080/remoteEntry.js',
     },
     exposes: {
         './nextjs-layout-box': './components/nextjs-layout-box.js',
@@ -654,10 +654,10 @@ new NextFederationPlugin({
 // webpack.config.js
 // ...
 new ModuleFederationPlugin({
-      name: 'react-app',
+      name: 'reactApp',
       filename: 'remoteEntry.js',
       remotes: {
-        remote: 'next-app@http://localhost:8081/_next/static/chunks/remoteEntry.js',
+        remote: 'nextApp@http://localhost:8081/_next/static/chunks/remoteEntry.js',
       },
       exposes: {
         './Nav': './src/components/Nav',
