@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const { ModuleFederationPlugin } = require('webpack').container;
 
 module.exports = {
   entry: './src/index',
@@ -26,6 +27,13 @@ module.exports = {
     ],
   },
   plugins: [
+    new ModuleFederationPlugin({
+      name: 'remote',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './Nav': './src/components/Nav',
+      },
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
