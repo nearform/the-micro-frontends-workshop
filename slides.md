@@ -260,8 +260,9 @@ In `src` folder of the provided basic React application:
 -- Import the `Nav` component from `src/components` folder, display it inside the `App.js` file under the title and pass some links as props to it; the links props should be an array of objects like this:
 ```js
   const links = [
-    { url: "/", label: "Home Page" },
-    { url: "https://example.com", label: "Example Page" }
+    { url: '/', label: 'Home' },
+    { url: 'https://react.dev/', label: 'Learn more about React.js' },
+    { url: 'https://webpack.js.org/concepts/module-federation/', label: 'Learn more about Module Federation' }
   ]
 ```
 
@@ -303,7 +304,7 @@ const links = [
 const App = () => (
     <div>
         <h1>Basic Remote Application</h1>
-        <Nav links={links}>
+        <Nav links={links} />
     </div>
 )
 export default App
