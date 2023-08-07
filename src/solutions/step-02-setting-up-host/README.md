@@ -4,7 +4,10 @@ This example demos a basic host Next.js application on port `8080` which imports
 
 # Running Demo
 
-From `src/step-02-setting-up-host` folder run `npm start` to concurrently start the host and the remote app (from step 1).
+Make sure that you have installed all the dependencies by running `npm install` from the **root folder of the workshop**!
+
+From `src/step-02-setting-up-remote` folder run `npm i && npm start`. This will build and start both React.js and Next.js app on ports `8080` and `8081` respectively (or other ports if these are not available).
 
 http://localhost:8080
-http://localhost:3002
+http://localhost:8081
+
