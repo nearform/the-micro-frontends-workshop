@@ -260,8 +260,9 @@ In `src` folder of the provided basic React application:
 -- Import the `Nav` component from `src/components` folder, display it inside the `App.js` file under the title and pass some links as props to it; the links props should be an array of objects like this:
 ```js
   const links = [
-    { url: "/", label: "Home Page" },
-    { url: "https://example.com", label: "Example Page" }
+    { url: '/', label: 'Home' },
+    { url: 'https://react.dev/', label: 'Learn more about React.js' },
+    { url: 'https://webpack.js.org/concepts/module-federation/', label: 'Learn more about Module Federation' }
   ]
 ```
 
@@ -303,7 +304,7 @@ const links = [
 const App = () => (
     <div>
         <h1>Basic Remote Application</h1>
-        <Nav links={links}>
+        <Nav links={links} />
     </div>
 )
 export default App
@@ -633,9 +634,9 @@ In this step we are going to demonstrate Module Federation's bidirectional abili
 // next.config.js
 //...
 new NextFederationPlugin({
-    name: 'next-app',
+    name: 'nextApp',
     remotes: {
-        remote: 'react-app@http://localhost:8080/remoteEntry.js',
+        remote: 'reactApp@http://localhost:8080/remoteEntry.js',
     },
     exposes: {
         './nextjs-layout-box': './components/nextjs-layout-box.js',
@@ -653,10 +654,10 @@ new NextFederationPlugin({
 // webpack.config.js
 // ...
 new ModuleFederationPlugin({
-      name: 'react-app',
+      name: 'reactApp',
       filename: 'remoteEntry.js',
       remotes: {
-        remote: 'next-app@http://localhost:8081/_next/static/chunks/remoteEntry.js',
+        remote: 'nextApp@http://localhost:8081/_next/static/chunks/remoteEntry.js',
       },
       exposes: {
         './Nav': './src/components/Nav',
