@@ -4,6 +4,11 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    ignore:
+        # Pending complete resolution of https://github.com/module-federation/universe/issues/1102
+        # This exception should be removed as part of https://github.com/nearform/the-micro-frontends-workshop/issues/32
+      - dependency-name: "@module-federation/nextjs-mf"
+        versions: ["6.x", "7.x"]
   - package-ecosystem: github-actions
     directory: /
     schedule:
