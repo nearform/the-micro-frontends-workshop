@@ -63,3 +63,11 @@ ol {
 .sublist {
   margin-left: 2rem;
 }
+
+.slidev-layout {
+  display: flex;
+  flex-direction: column;
+}
+.slidev-code-wrapper {
+  overflow-y: auto;
+}

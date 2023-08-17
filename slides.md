@@ -425,7 +425,7 @@ remotes: {
 
 <div class="dense">
 
--- In order to import/consume a module into a plain webpack host applications such as any React.js based app, we need to use the import keyword (dynamic import) and refer to the remote component based on the `key` name from one of the prevoius steps where we set up remotes in the config file. We used `someRemoteApp` and `anotherRemoteApp` in our example.
+-- In order to import/consume a module into a plain webpack host applications such as any React.js based app, we need to use the import keyword (dynamic import) and refer to the remote component based on the `key` name from one of the previous steps where we set up remotes in the config file. We used `someRemoteApp` and `anotherRemoteApp` in our example.
 
 -- Our example import statement could look something like this:
 
@@ -604,7 +604,7 @@ In this step we are going to demonstrate Module Federation's bidirectional abili
 
 -- Expose them as remotes in `next.config.js` file using the same syntax/pattern as in Step 1.
 
--- Similary, inside of `React.js` find the `Nav` component in `src/components/Nav.jsx` as well as `Title` component in `src/components/Title.jsx` file.
+-- Similarly, inside of `React.js` find the `Nav` component in `src/components/Nav.jsx` as well as `Title` component in `src/components/Title.jsx` file.
 
 -- Expose both components as remotes inside of `webpack.config.js` file using the same syntax/pattern as in Step 1.
 
@@ -776,6 +776,10 @@ You should see the `Next.js` app wrapped in its local `LayoutBox` as well the tw
 -- Shared dependencies typically include runtime libraries, such as **React** or **Angular**, along with any additional utility libraries or common components that are needed by the federated modules. They are typically declared and managed in a shared configuration file, allowing modules to access and utilize them seamlessly.
 
 </div>
+
+---
+
+## Shared dependencies: Guidelines
 
 Please follow the guidelines from Zack Jackson (inventor & co-creator of module federation):
 
