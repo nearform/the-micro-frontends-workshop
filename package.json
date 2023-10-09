@@ -28,7 +28,7 @@
     "eslint": "^8.50.0",
     "playwright-chromium": "^1.38.0",
     "prettier": "^3.0.3",
-    "sinon": "^16.0.0",
+    "sinon": "^16.1.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.2.2"
   }
