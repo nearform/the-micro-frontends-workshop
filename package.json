@@ -24,7 +24,7 @@
     "@types/sinon": "^10.0.15",
     "@types/tap": "^15.0.9",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
-    "@typescript-eslint/parser": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.4",
     "eslint": "^8.50.0",
     "playwright-chromium": "^1.38.0",
     "prettier": "^3.0.3",
