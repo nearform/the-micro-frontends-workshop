@@ -22,7 +22,7 @@
     "@types/http-errors": "^2.0.2",
     "@types/node": "^20.8.6",
     "@types/sinon": "^10.0.19",
-    "@types/tap": "^15.0.9",
+    "@types/tap": "^15.0.10",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.7.5",
     "eslint": "^8.51.0",
