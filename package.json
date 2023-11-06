@@ -21,14 +21,14 @@
     "@tsconfig/node16": "^16.1.1",
     "@types/http-errors": "^2.0.3",
     "@types/node": "^20.8.9",
-    "@types/sinon": "^10.0.19",
+    "@types/sinon": "^17.0.0",
     "@types/tap": "^15.0.10",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.7.5",
     "eslint": "^8.51.0",
     "playwright-chromium": "^1.38.1",
     "prettier": "^3.0.3",
-    "sinon": "^17.0.0",
+    "sinon": "^17.0.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.2.2"
   }
