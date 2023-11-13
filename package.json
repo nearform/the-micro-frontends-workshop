@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@tsconfig/node16": "^16.1.1",
-    "@types/http-errors": "^2.0.3",
+    "@types/http-errors": "^2.0.4",
     "@types/node": "^20.8.9",
     "@types/sinon": "^17.0.0",
     "@types/tap": "^15.0.10",
