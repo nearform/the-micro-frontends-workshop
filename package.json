@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@slidev/cli": "^0.46.1",
-    "slidev-theme-nearform": "^1.5.7"
+    "slidev-theme-nearform": "^2.0.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "^16.1.1",
