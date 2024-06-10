@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.24.5",
-    "@babel/plugin-transform-runtime": "^7.24.6",
+    "@babel/plugin-transform-runtime": "^7.24.7",
     "@babel/preset-env": "^7.24.7",
     "@babel/preset-react": "^7.24.6",
     "@emotion/react": "11.11.4",
