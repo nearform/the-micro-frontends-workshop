@@ -23,7 +23,7 @@
     "@types/node": "^22.5.4",
     "@types/sinon": "^17.0.3",
     "@types/tap": "^15.0.12",
-    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.4.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.57.0",
     "playwright-chromium": "^1.47.0",
