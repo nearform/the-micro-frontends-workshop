@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@module-federation/nextjs-mf": "8.8.19",
-    "next": "15.2.1",
+    "next": "15.2.3",
     "react": "19.0.0",
     "react-dom": "19.0.0"
   },
