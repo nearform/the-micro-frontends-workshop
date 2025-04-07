@@ -30,6 +30,6 @@
     "prettier": "^3.5.3",
     "sinon": "^20.0.0",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.3"
   }
 }
