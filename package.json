@@ -25,7 +25,7 @@
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^7.18.0",
     "eslint": "^8.57.0",
-    "playwright-chromium": "^1.55.1",
+    "playwright-chromium": "^1.56.1",
     "prettier": "^3.6.2",
     "sinon": "^21.0.0",
     "ts-node-dev": "^2.0.0",
