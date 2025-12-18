@@ -14,7 +14,7 @@
     "lint": "eslint --ext .ts,.js ./src"
   },
   "dependencies": {
-    "@slidev/cli": "^52.9.1",
+    "@slidev/cli": "^52.10.1",
     "slidev-theme-nearform": "^2.1.0"
   },
   "devDependencies": {
