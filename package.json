@@ -11,20 +11,22 @@
     "build": "slidev build",
     "start": "slidev --open",
     "export": "slidev export",
-    "lint": "eslint --ext .ts,.js ./src"
+    "lint": "eslint ./src"
   },
   "dependencies": {
     "@slidev/cli": "^52.18.0",
     "slidev-theme-nearform": "^3.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@tsconfig/node16": "^16.1.6",
     "@types/http-errors": "^2.0.5",
     "@types/node": "^24.10.1",
     "@types/sinon": "^21.0.0",
-    "@typescript-eslint/eslint-plugin": "^7.0.0",
-    "@typescript-eslint/parser": "^7.18.0",
-    "eslint": "^8.57.0",
+    "@typescript-eslint/eslint-plugin": "^8.67.0",
+    "@typescript-eslint/parser": "^8.67.0",
+    "eslint": "^10.6.0",
+    "globals": "^17.9.0",
     "playwright-chromium": "^1.56.1",
     "prettier": "^3.6.2",
     "sinon": "^21.0.1",
