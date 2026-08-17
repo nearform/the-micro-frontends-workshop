@@ -19,7 +19,6 @@ module.exports = [
   },
   {
     files: ['**/*.{js,mjs,cjs,ts,tsx}'],
-    ...js.configs.recommended,
     plugins: { '@typescript-eslint': tsPlugin },
     languageOptions: {
       parser: tsParser,
@@ -33,6 +32,11 @@ module.exports = [
       }
     },
     rules: {
+      // Both rule sets must be spread into this single `rules` object. Spreading
+      // `js.configs.recommended` at the config-object level instead is silently
+      // useless: it only carries `{ name, rules }`, so a later `rules` key
+      // replaces it wholesale and eslint:recommended never applies.
+      ...js.configs.recommended.rules,
       ...tsPlugin.configs.recommended.rules,
       '@typescript-eslint/no-var-requires': 'off',
       // typescript-eslint 8 replaced no-var-requires with no-require-imports in

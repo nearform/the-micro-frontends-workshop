@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "devDependencies": {
-    "@babel/core": "7.29.6",
+    "@babel/core": "8.0.1",
     "@babel/preset-react": "7.28.5",
-    "babel-loader": "10.0.0",
-    "html-webpack-plugin": "5.6.5",
-    "serve": "14.2.5",
-    "webpack": "5.104.1",
+    "babel-loader": "10.1.1",
+    "html-webpack-plugin": "5.6.8",
+    "serve": "14.2.6",
+    "webpack": "5.109.2",
     "webpack-cli": "6.0.1",
     "webpack-dev-server": "6.0.0"
   },
@@ -20,6 +20,6 @@
   },
   "dependencies": {
     "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "react-dom": "^19.2.8"
   }
 }
