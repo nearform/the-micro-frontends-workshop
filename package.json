@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@slidev/cli": "^53.0.0",
-    "slidev-theme-nearform": "^3.0.0"
+    "slidev-theme-nearform": "^3.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
