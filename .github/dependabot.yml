@@ -1,5 +1,8 @@
 version: 2
 updates:
+  # `next` bumps: @module-federation/nextjs-mf@8.x declares peer next ^12-^15 but the
+  # apps use Next 16, so Dependabot cannot regenerate package-lock.json for them and
+  # CI fails on `npm ci`. Fix those PRs by hand: see README "Maintaining Dependencies".
   - package-ecosystem: npm
     directory: /
     schedule:
