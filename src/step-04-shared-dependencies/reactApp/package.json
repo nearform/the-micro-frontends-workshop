@@ -21,7 +21,7 @@
     "style-loader": "^4.0.0",
     "webpack": "5.111.0",
     "webpack-cli": "7.3.1",
-    "webpack-dev-server": "^6.0.0"
+    "webpack-dev-server": "^6.1.0"
   },
   "scripts": {
     "start": "webpack-cli serve",
